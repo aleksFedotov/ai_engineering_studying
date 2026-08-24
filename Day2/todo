@@ -1,0 +1,10 @@
+День 2 — Сообщения, роли, параметры (~2 ч)
+Источники:
+OpenAI Text generation: https://platform.openai.com/docs/guides/text
+Anthropic Messages API (разделы про messages и system): https://platform.claude.com/docs/en/get-started
+Что сделать:
+Разобрать структуру messages: роли system/user/assistant
+Заметить разницу: у Anthropic system — отдельный параметр, у OpenAI — сообщение в массиве; у Anthropic max_tokens обязателен
+Поэкспериментировать с temperature (0 / 0.7 / 1.5) на одном и том же промпте — 3 прогона каждого значения
+Многоходовой диалог: передать историю сообщений обратно в запрос
+Контрольная точка: можете объяснить вслух, почему модель «не помнит» прошлый запрос без передачи истории.
