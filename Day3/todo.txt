@@ -1,0 +1,10 @@
+День 3 — Стриминг (~2 ч)
+Источники:
+OpenAI Streaming: https://platform.openai.com/docs/guides/streaming
+Anthropic Streaming: https://platform.claude.com/docs/en/build-with-claude/streaming
+Что сделать:
+Переписать вчерашний скрипт на стриминг — печать токенов по мере поступления
+Замерить «время до первого токена» vs время полного ответа
+У Anthropic: использовать client.messages.stream() + get_final_message()
+Попробовать большой max_tokens без стриминга и со стримингом — почувствовать разницу в обрывах соединения
+Контрольная точка: понимаете, зачем стриминг нужен (UX, latency, длинные ответы), а не просто умеете копировать пример.
