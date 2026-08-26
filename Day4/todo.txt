@@ -1,0 +1,11 @@
+День 4 — Structured Outputs / JSON (~2–2.5 ч)
+Источники:
+OpenAI Structured Outputs: https://platform.openai.com/docs/guides/structured-outputs
+OpenAI Cookbook — разделы про structured outputs: https://developers.openai.com/cookbook
+Anthropic: prefill { + JSON mode (в prompting docs)
+Что сделать:
+Определить Pydantic-модель (например, class Analysis: summary: str; topics: list[str]; sentiment: str)
+Через responses.parse получить гарантированно валидный JSON
+То же у Anthropic — через prefill ответа
+Намеренно сломать схему и посмотреть на поведение ошибок
+Контрольная точка: ваш суммаризатор возвращает типизированный Python-объект, а не строку, которую надо парсить.
