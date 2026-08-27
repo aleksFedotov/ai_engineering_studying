@@ -1,0 +1,11 @@
+День 5 — Ошибки, rate limits, retry (~2 ч)
+Источники:
+OpenAI Rate limits: https://platform.openai.com/docs/guides/rate-limits
+Anthropic Errors: https://platform.claude.com/docs/en/api/errors
+README openai-python (разделы retries/timeouts): https://github.com/openai/openai-python
+Что сделать:
+Выучить карту ошибок: 400/401/403/404 — не ретраим; 408/409/429/5xx — ретраим
+Понять, что SDK уже ретраят автоматически (по умолчанию 2 попытки, exponential backoff) — проверить параметр max_retries
+Поймать 429 вживую: серия быстрых параллельных запросов на дешёвой модели (или на OpenRouter free-моделях — лимиты там наступают сразу)
+Написать обработчик: логировать тип ошибки, request-id, уважать retry-after
+Контрольная точка: ваш скрипт переживает 429 и таймаут, не падая.
