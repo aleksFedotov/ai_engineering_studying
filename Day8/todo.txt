@@ -1,0 +1,10 @@
+День 8 — Система промптинга Anthropic 
+Источники:
+Prompt engineering overview: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview
+Best practices: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
+Что сделать:
+Прочитать лестницу техник: ясность → multishot → CoT → XML-теги → system prompts → prefill → chaining
+Взять один свой рабочий промпт и прогнать через улучшения: добавить разделители, XML-теги, явный формат вывода
+Запомнить «золотой стандарт»: покажите промпт коллеге без контекста — если коллега запутался, модель тоже
+Контрольная точка: можете назвать техники в порядке эскалации и когда какую применять.
+
