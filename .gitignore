@@ -1,2 +1,5 @@
 .env
 __pycache__
+/Day9_Day10/courses/*
+courses/
+/Day9_Day10/courses/

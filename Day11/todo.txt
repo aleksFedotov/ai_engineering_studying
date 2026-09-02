@@ -1,0 +1,8 @@
+День 11 — Гайд OpenAI + разница с Anthropic
+Источники:
+OpenAI Prompt engineering guide: https://developers.openai.com/api/docs/guides/prompt-engineering
+Курс DeepLearning.AI (по желанию, ~1 ч, фоново): https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/
+Что сделать:
+Прочитать 6 стратегий OpenAI, отметить пересечения и отличия от подхода Anthropic
+Курс DeepLearning.AI — только как обзор: помнить, что он на GPT-3.5 (2023), механику не копировать
+Составить свою шпаргалку: 10 приёмов промптинга с примерами из своих экспериментов
