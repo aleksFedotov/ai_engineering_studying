@@ -1,0 +1,11 @@
+День 12 — Reasoning-модели: что изменилось (~2 ч)
+Источники:
+Раздел про reasoning-модели в гайде OpenAI (тот же URL из дня 11)
+Статья Anthropic про extended thinking: https://claude.com/blog/best-practices-for-prompt-engineering
+https://tianpan.co/blog/2026-04-16-prompting-reasoning-models-differently
+«Prompting Inversion»: https://arxiv.org/html/2510.22251v1
+Что сделать:
+Выписать правила: reasoning-модели — цель на высоком уровне, zero-shot по умолчанию, без «think step by step»
+Эксперимент: одна задача на обычной модели и на reasoning-модели с детальным CoT-промптом и с минимальным промптом — сравнить качество и счёт (reasoning-токены тарифицируются как output!)
+Убедиться на практике: раздутый промпт может ухудшать результат сильной модели
+Контрольная точка: можете объяснить, какие приёмы 2023 года устарели и почему.
