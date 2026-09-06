@@ -4,7 +4,9 @@ import os
 import openai
 import argparse
 from pydantic import BaseModel, Field,model_validator
-from typing import Dict
+import difflib
+from tabulate import tabulate
+import re
 
 load_dotenv("../.env")
 
@@ -99,14 +101,15 @@ system_promt =f"""
 Твоя задача отвечать на воросы пользователя используя ИСКЛЮЧИТЕЛЬНО инофрмацию из предоставленных заметок.
 </task>
 <rules>
-    1. Ищи ответ только внутри предоставленных Markdown-текстов.
-    2. Не используй свои фоновые знания для ответа на вопрос, если информации нет в заметках.
-    3. Если ответ на вопрос отсутствует в предоставленных заметках, прямо ответь: «В предоставленных заметках нет информации по этому вопросу».
-    4. При ответе Обязательно указывай заглавие или имя заметки (например, из заголовка `# Название`), откуда взята информация.
-    5. Если ответ на вопрос существует ты ОБЯЗАН сначала найти точную цитату из текста, не делай пересказ
-    6. Механика цитата -> ответ. Сначала найди точную цитату и используй ее для ответа. 
-            затем сформируй ответ
-    7.ИСКЛЮЧЕНИЕ: На светские фразы, приветствия и базовый разговор (например, «привет», «как дела?», «кто ты?») отвечай вежливо и кратко как дружелюбный ассистент, не обращаясь к заметкам.
+    1. ПРИОРИТЕТ ДЛЯ СВЕТСКИХ ФРАЗ: На приветствия, благодарности, разговорные фразы (например: «привет», «как дела?», «кто ты?», «спасибо») отвечай вежливо и кратко как дружелюбный ассистент, НЕ обращаясь к заметкам. 
+       Для таких фраз устанавливай quote_found = False, но в поле answer пиши свой ответ (например: «Привет! Я готов помочь вам по заметкам. О чем хотите узнать?»).
+    2. Ищи ответ только внутри предоставленных Markdown-текстов.
+    3. Не используй свои фоновые знания для ответа на вопрос, если информации нет в заметках.
+    4. Если вопрос содержит ложную посылку или миф, но в заметках есть текст, ОПРОВЕРГАЮЩИЙ эту посылку — это считается найденным ответом. Цитатой укажи опровержение из текста.
+    5. Если ответ на вопрос действительно отсутствует в предоставленных заметках (и не опровергается им), прямо ответь: «В предоставленных заметках нет информации по этому вопросу».
+    6. При ответе ОБЯЗАТЕЛЬНО укажи имя файла заметки (например, «08-streaming.md») в конце своего ответа в формате: (Источник: <имя_файла>).
+    7. Если ответ на вопрос существует ты ОБЯЗАН сначала найти точную цитату из текста, не делай пересказ.
+    8. Механика цитата -> ответ. Сначала найди точную цитату и используй ее для ответа, затем сформируй ответ.
 </rules>
 
 <notes>
@@ -124,111 +127,30 @@ def _report(input_tokens: int, output_tokens: int, cached: int, cost: float) -> 
     print(f"\n [токенов: {input_tokens} вх. / {output_tokens} вых. / "
           f"{cached} кэш. / ${cost:.6f} | сессия: ${session_cost:.6f}]")
 
+def normalize_text(text: str) -> str:
+    """Приводит текст к каноническому виду для гибкого сравнения."""
+    if not text:
+        return ""
+    text = text.lower()
+    text = text.replace("ё", "е")
+    text = text.replace("—", "-").replace("–", "-")  # Все тире к дефису
+    text = text.replace("«", '"').replace("»", '"')  # Все кавычки к обычным
+    text = re.sub(r'[\s\W]+', '', text)  # Удаляем все пробелы, знаки препинания и спецсимволы
+    return text
 
-
-def get_stream_response(model: str, user_input: str) :
-    history.append({"role": "user", "text": user_input})
-    full_response = ""
-    stream = None
-    try:
-        messages = [
-            {"role": m["role"], "content": m["text"]} for m in history
-        ]
-        stream =  client.responses.parse(
-            model=model,
-            stream= True,
-            input=messages,
-            text_format=Answer
-        )
-        final_usage = None
-        for chunk in stream:
-            if chunk.type == "response.output_text.delta":
-                text_data = chunk.delta
-                if text_data is None:
-                    continue
-                full_response += text_data
-                yield text_data
-            elif chunk.type == "response.completed":
-                final_usage = chunk.response.usage
-
-        if full_response:
-            try:
-                answer_obj = Answer.model_validate_json(full_response)
-
-                is_quote_valid = (
-                    answer_obj.quote_found 
-                    and answer_obj.quote 
-                    and (answer_obj.quote.strip() in notes_data)
-                )
-
-                if is_quote_valid:
-                    final_output = f"📌 Цитата: {answer_obj.quote}\n💡 Ответ: {answer_obj.answer}"
-                else:
-                    final_output = "В предоставленных заметках нет информации по этому вопросу."
-
-            except Exception as e:
-            
-                final_output = full_response 
-
-            
-            history.append({"role": "assistant", "text": final_output})
-            yield final_output
-        else:
-            # Запрос завершился неудачей — убираем неответченный вопрос
-            history.pop()
-
-        if final_usage is not None: 
-            p = PRICES[model]
-            input_tokens = getattr(final_usage, "input_tokens", 0) or 0
-            output_tokens = getattr(final_usage, "output_tokens", 0) or 0
-            details = getattr(final_usage, "input_tokens_details", None)
-            cached = (getattr(details, "cached_tokens", 0) or 0) if details else 0
-            fresh = input_tokens - cached
-            cost = fresh * p["input"] + cached * p["cached"] + output_tokens * p["output"]
-            _report(input_tokens=fresh, output_tokens=output_tokens,
-                    cached=cached, cost=cost)
-        else:
-            print("[WARNING] Стрим завершился без события response.completed — usage неизвестен")
-
-
-
-    except openai.RateLimitError as e:
-        # 429: лимит не снялся даже после автоматических ретраев SDK
-        print(f"\n[429 Rate Limit] Лимит запросов: {e.message}. Подождите и повторите.")
-    except (openai.APIConnectionError, openai.APITimeoutError) as e:
-        print(f"\n[Сеть/таймаут] Проблема с соединением к OpenAI: {e}")
-    except openai.APIError as e:
-        # Всё остальное от API OpenAI: 400, 401, 5xx после ретраев и т.д.
-        print(f"\n[API Error OpenAI {e.status_code}] {e.message}")
-    except Exception as e:
-        # Баги нашего собственного кода — не роняем чат
-        print(f"\n[Системная ошибка] {type(e).__name__}: {e}")
-
-    finally:
-         if stream is not None:
-            try:
-                stream.close()
-            except Exception:
-                pass
-    # if full_response:
-      
-    #     history.append({"role": "assistant", "text": full_response})
-
-    # else:
-    #     # запрос не состоялся — убираем «вопрос без ответа» из истории
-    #     history.pop()
 
 def get_response(model: str, messages: list[dict])-> tuple[Answer, object]:
     res = client.responses.parse(
         model=model,
         input=messages,
+        temperature=0.0,
         text_format= Answer
     )
 
     return res.output_parsed, res.usage
 
 
-def check_expectations(answer_obj:Answer, t: dict) -> tuple[bool, str]:
+def check_expectations(answer_obj: Answer, t: dict) -> tuple[bool, str]:
     expect_found = t["expect_found"]
     expect_source = t.get("expect_source")
 
@@ -247,17 +169,38 @@ def check_expectations(answer_obj:Answer, t: dict) -> tuple[bool, str]:
     if not answer_obj.quote or not answer_obj.answer:
         return False, "quote_found=True, но поле quote или answer пустое (None)"
 
-    # --- Проверка 2.1: Действительно ли цитата существует в оригинальном тексте заметок ---
-    # Переменная notes_data должна быть доступна глобально или передаваться параметром
-    if answer_obj.quote.strip() not in notes_data:
+    # --- Проверка 2.1: Сравнение нормализованной цитаты ---
+    norm_quote = normalize_text(answer_obj.quote)
+    norm_notes = normalize_text(notes_data)
+
+
+    if norm_quote not in norm_notes:
+        # === ДИАГНОСТИЧЕСКИЙ БЛОК ===
+        notes_lines = notes_data.splitlines()
+        
+
+        matches = difflib.get_close_matches(answer_obj.quote.strip(), notes_lines, n=3, cutoff=0.4)
+        
+        print(f"\n      🔍 [ДИАГНОСТИКА ГАЛЛЮЦИНАЦИИ для вопроса: '{t['q']}']")
+        print(f"      Оригинал цитаты LLM: {repr(answer_obj.quote)}")
+
+        if matches:
+            print("      Ближайшие похожие строки из заметок:")
+            for idx, match in enumerate(matches, 1):
+                print(f"        {idx}. {repr(match)}")
+            print(f"      Нормализованная цитата: {repr(norm_quote)}")
+        else:
+            print("      Ближайшие похожие строки не найдены в notes_data.")
+        print("      " + "-" * 50)
+        # ============================
+
         return False, f"Галлюцинация цитаты: текст '{answer_obj.quote[:30]}...' отсутствует в заметках"
 
-    # --- Проверка 2.2: Содержится ли упоминание нужного файла в ответе или цитате ---
+    # --- Проверка 2.2: Содержится ли упоминание нужного файла ---
     if expect_source:
         source_in_quote = expect_source in answer_obj.quote
         source_in_answer = expect_source in answer_obj.answer
         
-        # Если имя файла не найдено напрямую, попробуем поискать заголовок без разрешения (например, "01-tokens")
         clean_source_name = os.path.splitext(expect_source)[0]
         clean_in_quote = clean_source_name in answer_obj.quote
         clean_in_answer = clean_source_name in answer_obj.answer
@@ -324,21 +267,52 @@ def chat(model:str):
 
 def run_tests(model:str) -> list[dict]:
     results = []
+    usage_total = {
+        "input_tokens" : 0,
+        "output_tokens" : 0,
+        "cached": 0,
+        "cost" : 0,
+    }
     for t in TESTS:
         messages =[
             {"role": "system", "content": system_promt},
             {"role": "user", "content": t["q"]},  
         ]
+        try:
 
-        answer_obj, usage = get_response(model, messages) 
-        ok, reason = check_expectations(answer_obj, t) 
-        results.append({
-                    "группа": t["group"], 
-                    "вопрос": t["q"][:30] + "…",
-                    "статус": "✅" if ok else "❌", 
-                    "причина": reason
-                })
-    return results
+            answer_obj, usage = get_response(model, messages) 
+            ok, reason = check_expectations(answer_obj, t) 
+            results.append({
+                        "группа": t["group"], 
+                        "вопрос": t["q"][:30] + "…",
+                        "статус": "✅" if ok else "❌", 
+                        "причина": reason
+                    })
+
+            if usage is not None: 
+                p = PRICES[model]
+                input_tokens = getattr(usage, "input_tokens", 0) or 0
+                output_tokens = getattr(usage, "output_tokens", 0) or 0
+                usage_total["output_tokens"] += output_tokens
+                details = getattr(usage, "input_tokens_details", None)
+                cached = (getattr(details, "cached_tokens", 0) or 0) if details else 0
+                usage_total["cached"] += cached
+                fresh = input_tokens - cached
+                usage_total["input_tokens"] += fresh
+                cost = fresh * p["input"] + cached * p["cached"] + output_tokens * p["output"]
+                usage_total["cost"] += cost
+
+        except openai.RateLimitError as e:
+            print(f"\n[429 Rate Limit] Лимит запросов: {e.message}. Подождите и повторите.")
+        except (openai.APIConnectionError, openai.APITimeoutError) as e:
+            print(f"\n[Сеть/таймаут] Проблема с соединением к OpenAI: {e}")
+
+        except openai.APIError as e:
+            print(f"\n[API Error OpenAI {e.status_code}] {e.message}")
+        except Exception as e:
+            print(f"[Системная] {type(e).__name__}: {e}")
+         
+    return results, usage_total
 
 
 def main():
@@ -353,8 +327,7 @@ def main():
 
     parser.add_argument(
         "--test",
-        choices=["true", "false"],
-        default=False,
+        action="store_true",
         help="Прогнать тесты"
     )
 
@@ -368,7 +341,21 @@ def main():
 
 
     if test:
-        print(run_tests(model=model))
+        results, usage_total = run_tests(model=model)
+                
+        # 1. Печатаем таблицу с результатами
+        print("\n=== РЕЗУЛЬТАТЫ ТЕСТИРОВАНИЯ ===")
+        print(tabulate(results, headers="keys", tablefmt="github"))
+        
+        # 2. Печатаем аккуратную плашку расходов ПОД таблицей
+        print("\n" + "=" * 45)
+        print("📊 ИТОГОВАЯ СТАТИСТИКА И РАСХОДЫ ТЕСТА")
+        print("=" * 45)
+        print(f"📥 Входные токены (fresh):  {usage_total['input_tokens']:,}")
+        print(f"⚡ Кэшированные токены:     {usage_total['cached']:,}")
+        print(f"📤 Выходные токены:         {usage_total['output_tokens']:,}")
+        print(f"💰 Итоговая стоимость:       ${usage_total['cost']:.6f}")
+        print("=" * 45 + "\n")
     else:
         print("Команды: exit/quit")
         chat(model)
