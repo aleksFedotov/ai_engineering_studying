@@ -1,0 +1,12 @@
+День 17 — Визуализация эмбеддингов: t-SNE / UMAP (~2 ч)
+Источники:
+OpenAI Cookbook — Visualizing embeddings in 2D: https://github.com/openai/openai-cookbook (examples/Visualizing_embeddings_in_2D.ipynb)
+How to Visualize Embeddings with t-SNE, UMAP (Nomic): https://docs.nomic.ai/atlas/embeddings-and-retrieval/guides/how-to-visualize-embeddings
+Что сделать:
+Собрать датасет: 30–50 коротких текстов из 3–4 тем (спорт, кулинария, технологии, финансы) — написать самому
+Получить эмбеддинги, сжать через t-SNE (scikit-learn), построить scatter-plot с раскраской по темам
+Повторить с UMAP (pip install umap-learn), сравнить картинки
+Поэкспериментировать с perplexity (t-SNE) и n_neighbors (UMAP) в диапазоне 5–50
+Контрольная точка: темы на графике кластеризуются; понимаете, что визуализация — диагностика: если кластеров нет, проблема в модели или данных, и узнать об этом надо до сборки RAG.
+
+
