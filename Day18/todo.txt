@@ -1,0 +1,11 @@
+ень 18 — Выбор embedding-модели: MTEB и ruMTEB (~2 ч)
+Источники:
+Официальный MTEB Leaderboard: https://huggingface.co/spaces/mteb/leaderboard
+Как читать лидерборд (Modal): https://modal.com/blog/mteb-leaderboard-article
+FRIDA и ruMTEB (Хабр / SberDevices): https://habr.com/ru/companies/sberdevices/articles/909924/
+Что сделать:
+Открыть лидерборд, найти вкладки по категориям задач; понять, почему для RAG смотрят Retrieval и STS, а не общий средний балл
+Выписать таблицу 4–5 моделей: text-embedding-3-small/large, BGE-M3, multilingual-e5-large, Qwen3-Embedding — размерность, контекст, цена/лицензия
+Прочитать статью про FRIDA и ruMTEB, выписать лучшие модели для русского языка
+Прогнать 5 своих русскоязычных фраз через multilingual-e5-large, сравнить сходство с результатами дня 16
+Контрольная точка: можете обосновать выбор модели для двух сценариев: «англоязычный корпус, бюджет минимальный» и «русскоязычный корпус, self-hosted».
