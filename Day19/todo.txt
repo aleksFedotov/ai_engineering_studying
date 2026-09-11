@@ -1,0 +1,11 @@
+День 19 — Чанкинг: стратегии, размер, overlap (~2 ч)
+Источники:
+Chunking Strategies for RAG (обзор 5 стратегий): https://matheusjerico.medium.com/chunking-strategies-for-rag-fixed-recursive-semantic-language-based-and-context-aware-4ab476aea7d1
+RAG Chunking Strategies: The 2026 Benchmark Guide (PremAI): https://www.premai.io/blog/rag-chunking-strategies-the-2026-benchmark-guide/
+LangChain Text Splitters (официальные доки): https://docs.langchain.com/oss/python/integrations/splitters
+Что сделать:
+Прочитать обзор стратегий: фиксированный → рекурсивный → по предложениям → семантический → по структуре документа
+Выписать правила из бенчмарков: 256–512 токенов как базовая линия, аналитика — 512–1024, overlap 10–20%
+Усвоить контринтуитивное: семантический чанкинг НЕ всегда лучше рекурсивного — начинаем с рекурсивного и измеряем
+Написать свой фиксированный сплиттер на чистом Python (размер в токенах через tiktoken, overlap) и рекурсивный через RecursiveCharacterTextSplitter — сравнить чанки на одном тексте
+Контрольная точка: два работающих сплиттера; можете объяснить, почему размер меряют в токенах, а не символах, и чем плохи слишком мелкие чанки (128 токенов).
