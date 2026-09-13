@@ -1,0 +1,12 @@
+День 20 — Чанкинг реальных документов: PDF и таблицы (~2.5 ч)
+Источники:
+Your Chunks Failed Your RAG in Production (Towards Data Science): https://towardsdatascience.com/your-chunks-failed-your-rag-in-production/
+Docling (официальный репозиторий): https://github.com/docling-project/docling
+Unstructured vs LlamaParse vs Docling (Kanopy Labs): https://kanopylabs.com/blog/unstructured-vs-llamaparse-vs-docling-document-parsing
+Что сделать:
+Прочитать, почему таблицы — главная причина «тихих» провалов retrieval: двумерная структура умирает при выравнивании в текст
+Установить Docling, распарсить 2–3 своих PDF (один — обязательно с таблицей)
+Прогнать результат через вчерашний рекурсивный сплиттер
+Вручную прочитать 15–20 чанков, выписать дефекты: разорванные таблицы, колонтитулы, битая кодировка, чанки из одного слова
+Попробовать отдельную обработку таблицы: превратить строки в естественно-языковые описания перед чанкингом
+Контрольная точка: есть список реальных дефектов чанкинга из ваших же документов и понимание, какой дефект как лечится.
