@@ -1,0 +1,10 @@
+День 22 — ANN и HNSW на концептуальном уровне (~2 ч)
+Источники:
+How HNSW algorithms boost search performance (Redis Blog): https://redis.io/blog/how-hnsw-algorithms-can-improve-search/
+Understanding HNSW (Zilliz Learn): https://zilliz.com/learn/hierarchical-navigable-small-worlds-HNSW
+Что сделать:
+Прочитать оба материала: аналогия со skip list, слои графа, «маленький мир», почему поиск идёт сверху вниз
+Выписать три параметра и их компромиссы: M (связей на узел: точность vs память), efConstruction (качество графа vs скорость индексации), efSearch (точность поиска vs скорость запроса)
+Нарисовать от руки схему трёхслойного HNSW и путь запроса по слоям
+Понять границу: точный поиск (brute force) vs приближённый — когда что применимо
+Контрольная точка: можете объяснить на пальцах, почему HNSW ищет по миллиону векторов за миллисекунды и чем при этом жертвует.
