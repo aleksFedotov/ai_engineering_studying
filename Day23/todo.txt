@@ -1,0 +1,11 @@
+День 23 — Chroma: первая векторная БД (~2 ч)
+Источники:
+Chroma Getting Started (официальные доки): https://docs.trychroma.com/docs/overview/getting-started
+Chroma Filters (where / where_document): https://cookbook.chromadb.dev/core/filters/
+Что сделать:
+pip install chromadb, поднять in-process клиент (без сервера), создать коллекцию
+Загрузить вчерашний index.jsonl: текст + эмбеддинги + метаданные (add с embeddings=...)
+Выполнить query по фразе — получить топ-5 чанков, посмотреть distances
+Попробовать фильтры: where={"source": "файл.pdf"}, комбинации с $and/$or
+Понять: Chroma может сам эмбеддить, если не передать векторы — но мы передаём свои из проекта дня 21
+Контрольная точка: семантический поиск по вашим документам работает за 15 строк кода; фильтр по источнику реально сужает выдачу.
