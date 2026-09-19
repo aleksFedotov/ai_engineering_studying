@@ -1,0 +1,12 @@
+День 26 — Hybrid search и реранкинг (~2.5 ч)
+Источники:
+Sentence Transformers Tutorial 2026 (dense + sparse + RRF + CrossEncoder одной библиотекой): https://dataaspirant.com/blog/sentence-transformers/
+Anthropic Contextual Retrieval (инженерный блог): https://www.anthropic.com/engineering/contextual-retrieval
+Qdrant Hybrid Search tutorial: https://qdrant.tech/documentation/tutorials-develop/hybrid-search-fastembed/
+Что сделать:
+Добавить BM25 (библиотека rank_bm25) параллельно векторному поиску; слить списки через RRF (k=60) — формулу написать руками
+Придумать 3 запроса, где BM25 сильнее (точный термин, код, аббревиатура), и 3, где сильнее семантика (перефразировка); убедиться, что гибрид берёт лучшее из двух
+Поставить кросс-энкодер (cross-encoder/ms-marco-MiniLM-L-6-v2): переранжировать топ-20 кандидатов → оставить топ-3–5 для LLM
+Сравнить ответы на 10 вчерашних вопросах: базовый RAG vs гибрид + реранкинг — записать, где стало лучше
+Прочитать Contextual Retrieval как тему на вырост: контекст к чанку даёт −49% неудач retrieval, с реранкингом −67%
+Контрольная точка: в пайплайне три стадии (dense + BM25 → RRF → реранкинг), и на собственных примерах видно, зачем каждая.
