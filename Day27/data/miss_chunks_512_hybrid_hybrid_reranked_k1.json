@@ -1,0 +1,171 @@
+[
+  {
+    "id": "q_008",
+    "query": "What was the outcome of the battle of Lake Trasimene?",
+    "expected": [
+      "Punic_Wars_chunk_17"
+    ],
+    "got": [
+      {
+        "chunk_id": "Hannibal_chunk_13",
+        "score": 1.0,
+        "snippet": "Battle of Lake Trasimene\nThe only alternative route to central Italy lay at the mouth of the Arno. This area was mostly ..."
+      }
+    ]
+  },
+  {
+    "id": "q_025",
+    "query": "What notable entertainment events did Augustus stage in Rome?",
+    "expected": [
+      "Augustus_chunk_47"
+    ],
+    "got": [
+      {
+        "chunk_id": "Roman_Empire_chunk_41",
+        "score": 0.75,
+        "snippet": "Spectacles\nWhen Juvenal complained that the Roman people had exchanged their political liberty for \"bread and circuses\",..."
+      }
+    ]
+  },
+  {
+    "id": "q_032",
+    "query": "What was the role of gladiators in Roman spectacles?",
+    "expected": [
+      "Roman_Empire_chunk_43"
+    ],
+    "got": [
+      {
+        "chunk_id": "Roman_Empire_chunk_42",
+        "score": 1.0,
+        "snippet": "Spectacles\nMany Roman amphitheatres, circuses and theatres built in cities outside Italy are visible as ruins today. [35..."
+      }
+    ]
+  },
+  {
+    "id": "q_035",
+    "query": "What is the significance of the 2:3 resonance for plutinos like Pluto?",
+    "expected": [
+      "Kuiper_belt_chunk_11"
+    ],
+    "got": [
+      {
+        "chunk_id": "Solar_System_chunk_27",
+        "score": 0.6667,
+        "snippet": "Kuiper belt\n- Pluto (29.7-49.3 AU) is the largest known object in the Kuiper belt. Pluto has a relatively eccentric orbi..."
+      }
+    ]
+  },
+  {
+    "id": "q_049",
+    "query": "What is the composition of Mars's atmosphere?",
+    "expected": [
+      "Solar_System_chunk_18"
+    ],
+    "got": [
+      {
+        "chunk_id": "Mars_chunk_15",
+        "score": 1.0,
+        "snippet": "Atmosphere\nMars lost its magnetosphere 4 billion years ago, [122] possibly because  of  numerous  asteroid  strikes, [12..."
+      }
+    ]
+  },
+  {
+    "id": "q_057",
+    "query": "What was introduced in 2017 that improved NLP models?",
+    "expected": [
+      "Generative_pre-trained_transformer_chunk_1"
+    ],
+    "got": [
+      {
+        "chunk_id": "Generative_pre-trained_transformer_chunk_2",
+        "score": 0.5833,
+        "snippet": "History\nOn  June  11,  2018,  OpenAI  researchers  and  engineers  published  a  paper  called  \"Improving  Language Und..."
+      }
+    ]
+  },
+  {
+    "id": "q_059",
+    "query": "What algorithm is commonly used to minimize error in neural networks?",
+    "expected": [
+      "Backpropagation_chunk_7"
+    ],
+    "got": [
+      {
+        "chunk_id": "Recurrent_neural_network_chunk_10",
+        "score": 0.45,
+        "snippet": "Gradient descent\nGradient descent is a first-order iterative optimization algorithm for finding the minimum of a functio..."
+      }
+    ]
+  },
+  {
+    "id": "q_060",
+    "query": "What is a neutron star and how is it formed?",
+    "expected": [
+      "Neutron_star_chunk_0"
+    ],
+    "got": [
+      {
+        "chunk_id": "Neutron_star_chunk_2",
+        "score": 0.7,
+        "snippet": "Formation\nAs  the  core  of  a  massive  star  is  compressed  during  a  Type  II  supernova  or  a  Type  Ib  or  Type..."
+      }
+    ]
+  },
+  {
+    "id": "q_063",
+    "query": "What significant event occurred in 221 BC involving Hannibal?",
+    "expected": [
+      "Hannibal_chunk_5",
+      "Hannibal_chunk_37"
+    ],
+    "got": [
+      {
+        "chunk_id": "Hannibal_chunk_27",
+        "score": 0.5,
+        "snippet": "Death (183-181 BC)\nAt this stage, the Romans intervened and threatened Bithynia into giving up Hannibal. [82] Prusias ag..."
+      }
+    ]
+  },
+  {
+    "id": "q_066",
+    "query": "How does gradient boosting improve its predictions?",
+    "expected": [
+      "Gradient_boosting_chunk_1"
+    ],
+    "got": [
+      {
+        "chunk_id": "Gradient_boosting_chunk_0",
+        "score": 0.5,
+        "snippet": "Gradient boosting\nGradient boosting is  a  machine  learning  technique  based  on  boosting  in  a  functional  space, ..."
+      }
+    ]
+  },
+  {
+    "id": "q_083",
+    "query": "What type of planetary system is the Solar System classified as?",
+    "expected": [
+      "Solar_System_chunk_13"
+    ],
+    "got": [
+      {
+        "chunk_id": "Solar_System_chunk_0",
+        "score": 0.625,
+        "snippet": "Solar System\nThe Solar  System is  the  gravitationally  bound system  of  the  Sun  and  the  masses  that  orbit  it, ..."
+      }
+    ]
+  },
+  {
+    "id": "q_089",
+    "query": "What is the hypothesized influence on extreme trans-Neptunian objects' orbits?",
+    "expected": [
+      "Solar_System_chunk_31"
+    ],
+    "got": [
+      {
+        "chunk_id": "Solar_System_chunk_30",
+        "score": 0.8333,
+        "snippet": "Extreme trans-Neptunian objects\nSome objects in the Solar System have a very large orbit, and\nThe orbital eccentricities..."
+      }
+    ]
+  }
+]

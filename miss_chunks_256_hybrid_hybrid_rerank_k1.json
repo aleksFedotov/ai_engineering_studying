@@ -1,0 +1,185 @@
+[
+  {
+    "question_id": "q_008",
+    "question": "What was the outcome of the battle of Lake Trasimene?",
+    "expected_ids": [
+      "Punic_Wars_chunk_31"
+    ],
+    "retrieved": [
+      {
+        "id": "Hannibal_chunk_26",
+        "score": 0.25,
+        "snippet": "Battle of Lake Trasimene\nHannibal quartered his troops for the winter with the Gauls, whose support for him had abated. Fearing the possibility that t"
+      }
+    ]
+  },
+  {
+    "question_id": "q_016",
+    "question": "What was the purpose of the Pirs module on the ISS?",
+    "expected_ids": [
+      "International_Space_Station_chunk_66"
+    ],
+    "retrieved": [
+      {
+        "id": "International_Space_Station_chunk_67",
+        "score": 0.8333,
+        "snippet": "Pirs\nCommander Volkov stands on Pirs with his back to the Soyuz whilst operating the manual Strela crane (which is holding photographer Oleg Kononenko"
+      }
+    ]
+  },
+  {
+    "question_id": "q_025",
+    "question": "What notable entertainment events did Augustus stage in Rome?",
+    "expected_ids": [
+      "Augustus_chunk_103"
+    ],
+    "retrieved": [
+      {
+        "id": "Roman_Empire_chunk_83",
+        "score": 0.5769,
+        "snippet": "Spectacles\nWhen Juvenal complained that the Roman people had exchanged their political liberty for \"bread and circuses\",  he  was  referring  to  the "
+      }
+    ]
+  },
+  {
+    "question_id": "q_033",
+    "question": "Why were Crispus and Fausta executed?",
+    "expected_ids": [
+      "Constantine_the_Great_chunk_65"
+    ],
+    "retrieved": [
+      {
+        "id": "Constantine_the_Great_chunk_66",
+        "score": 0.8333,
+        "snippet": "Executions of Crispus and Fausta\n[275] Adrian Goldsworthy speculates an alternative explanation for the execution of Crispus was Constantine's desire "
+      }
+    ]
+  },
+  {
+    "question_id": "q_035",
+    "question": "What is the significance of the 2:3 resonance for plutinos like Pluto?",
+    "expected_ids": [
+      "Kuiper_belt_chunk_22"
+    ],
+    "retrieved": [
+      {
+        "id": "Kuiper_belt_chunk_23",
+        "score": 1.0,
+        "snippet": "Resonances\nof  this  family  are  known  as  plutinos.  Many  plutinos,  including  Pluto,  have  orbits  that  cross  that  of Neptune, although thei"
+      }
+    ]
+  },
+  {
+    "question_id": "q_044",
+    "question": "What is the formula for escape speed from a celestial body?",
+    "expected_ids": [
+      "Escape_velocity_chunk_3"
+    ],
+    "retrieved": [
+      {
+        "id": "Escape_velocity_chunk_0",
+        "score": 0.5833,
+        "snippet": "Escape velocity\nIn celestial mechanics, escape velocity or escape speed is  the  minimum speed needed for an object to escape from contact with or orb"
+      }
+    ]
+  },
+  {
+    "question_id": "q_057",
+    "question": "What was introduced in 2017 that improved NLP models?",
+    "expected_ids": [
+      "Generative_pre-trained_transformer_chunk_2"
+    ],
+    "retrieved": [
+      {
+        "id": "Generative_pre-trained_transformer_chunk_3",
+        "score": 0.5833,
+        "snippet": "History\nOn  June  11,  2018,  OpenAI  researchers  and  engineers  published  a  paper  called  \"Improving  Language Understanding  by  Generative  Pr"
+      }
+    ]
+  },
+  {
+    "question_id": "q_059",
+    "question": "What algorithm is commonly used to minimize error in neural networks?",
+    "expected_ids": [
+      "Backpropagation_chunk_14"
+    ],
+    "retrieved": [
+      {
+        "id": "Recurrent_neural_network_chunk_21",
+        "score": 0.5,
+        "snippet": "Gradient descent\nGradient descent is a first-order iterative optimization algorithm for finding the minimum of a function. In neural networks, it can "
+      }
+    ]
+  },
+  {
+    "question_id": "q_060",
+    "question": "What is a neutron star and how is it formed?",
+    "expected_ids": [
+      "Neutron_star_chunk_0"
+    ],
+    "retrieved": [
+      {
+        "id": "Neutron_star_chunk_4",
+        "score": 0.4583,
+        "snippet": "Formation\nAs  the  core  of  a  massive  star  is  compressed  during  a  Type  II  supernova  or  a  Type  Ib  or  Type  Ic supernova, and collapses "
+      }
+    ]
+  },
+  {
+    "question_id": "q_063",
+    "question": "What significant event occurred in 221 BC involving Hannibal?",
+    "expected_ids": [
+      "Hannibal_chunk_11",
+      "Hannibal_chunk_76"
+    ],
+    "retrieved": [
+      {
+        "id": "Hannibal_chunk_37",
+        "score": 0.1,
+        "snippet": "Battle of Cannae\nhad  received  proper  material  reinforcements  from  Carthage,  he  might  have  succeeded  with  a  direct  attack  upon  Rome. In"
+      }
+    ]
+  },
+  {
+    "question_id": "q_066",
+    "question": "How does gradient boosting improve its predictions?",
+    "expected_ids": [
+      "Gradient_boosting_chunk_3"
+    ],
+    "retrieved": [
+      {
+        "id": "Gradient_boosting_chunk_0",
+        "score": 0.5,
+        "snippet": "Gradient boosting\nGradient boosting is  a  machine  learning  technique  based  on  boosting  in  a  functional  space,  where  the  target  is pseudo"
+      }
+    ]
+  },
+  {
+    "question_id": "q_083",
+    "question": "What type of planetary system is the Solar System classified as?",
+    "expected_ids": [
+      "Solar_System_chunk_27"
+    ],
+    "retrieved": [
+      {
+        "id": "Solar_System_chunk_0",
+        "score": 0.6429,
+        "snippet": "Solar System\nThe Solar  System is  the  gravitationally  bound system  of  the  Sun  and  the  masses  that  orbit  it, most  prominently  its  eight "
+      }
+    ]
+  },
+  {
+    "question_id": "q_086",
+    "question": "What is the release timeframe for Windows 11 version 26H2?",
+    "expected_ids": [
+      "Windows_11_chunk_40"
+    ],
+    "retrieved": [
+      {
+        "id": "Windows_11_chunk_6",
+        "score": 0.3214,
+        "snippet": "Windows 11\n[plate:Latest_stable_soft ware_release/Windows_ 11&action=edit)](https://en.wikipedia.org/w/index.php?title=Template:Latest_stable_software"
+      }
+    ]
+  }
+]

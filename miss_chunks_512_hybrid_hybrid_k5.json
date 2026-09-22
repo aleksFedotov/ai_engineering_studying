@@ -1,0 +1,36 @@
+[
+  {
+    "question_id": "q_008",
+    "question": "What was the outcome of the battle of Lake Trasimene?",
+    "expected_ids": [
+      "Punic_Wars_chunk_17"
+    ],
+    "retrieved": [
+      {
+        "id": "Hannibal_chunk_13",
+        "score": 1.0,
+        "snippet": "Battle of Lake Trasimene\nThe only alternative route to central Italy lay at the mouth of the Arno. This area was mostly marshland and happened to be o"
+      },
+      {
+        "id": "Battle_of_Cannae_chunk_1",
+        "score": 0.5333,
+        "snippet": "Polybius\n- 5,700 killed\nThe Battle of Cannae (/ˈkæni, -eɪ, -aɪ/; [c] Latin:  [ˈkanːae̯])  was  a  key  engagement of the Second Punic War between the "
+      },
+      {
+        "id": "Hannibal_chunk_12",
+        "score": 0.45,
+        "snippet": "Battle of Trebia\nEven before news of the defeat at Ticinus had reached Rome, the Senate had ordered Consul Tiberius Sempronius Longus to bring his arm"
+      },
+      {
+        "id": "Hannibal_chunk_14",
+        "score": 0.4167,
+        "snippet": "Battle of Lake Trasimene\nsiege engines, he could not hope to take the capital. He opted to exploit his victory by entering into central and southern I"
+      },
+      {
+        "id": "Hannibal_chunk_0",
+        "score": 0.4048,
+        "snippet": "Hannibal\nHannibal (/ˈhænɪbəl/;  Punic: 𐤋𐤏𐤁𐤍𐤇 ;  247  -  between  183  and  181  BC) was a Carthaginian general and statesman who commanded the forces "
+      }
+    ]
+  }
+]

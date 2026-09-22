@@ -1,0 +1,34 @@
+[
+  {
+    "id": "q_056",
+    "query": "What is the title of the 1947 paper by Clemence?",
+    "expected": [],
+    "got": [
+      {
+        "chunk_id": "Roman_Empire_chunk_38",
+        "score": 0.7637,
+        "snippet": "Census rank\nwas refined further with titles such as vir illustris (\"illustrious man\"). [178] The appellation clarissimus..."
+      },
+      {
+        "chunk_id": "Long_short-term_memory_chunk_14",
+        "score": 0.7632,
+        "snippet": "Development\nAspects of LSTM were anticipated by \"focused back-propagation\", [64] cited by the LSTM paper. [1] Sepp Hochr..."
+      },
+      {
+        "chunk_id": "Recurrent_neural_network_chunk_2",
+        "score": 0.7564,
+        "snippet": "Before modern\nOne origin of RNN was neuroscience. The word \"recurrent\" is used to describe loop-like structures in anato..."
+      },
+      {
+        "chunk_id": "Constantine_the_Great_chunk_6",
+        "score": 0.7562,
+        "snippet": "Names\nFlavius Valerius Constantinus Lactantius' De  mortibus  persecutorum ,  a  political  Christian  pamphlet  on  the..."
+      },
+      {
+        "chunk_id": "Julius_Caesar_chunk_51",
+        "score": 0.7559,
+        "snippet": "Italy, Africa, and Spain\nand  Juba,  also  committed  suicide  shortly  thereafter. [182] Labienus  and  two  of  Pompey..."
+      }
+    ]
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "q_056",
+    "query": "What is the title of the 1947 paper by Clemence?",
+    "expected": [],
+    "got": [
+      {
+        "chunk_id": "Roman_Empire_chunk_38",
+        "score": 0.5,
+        "snippet": "Census rank\nwas refined further with titles such as vir illustris (\"illustrious man\"). [178] The appellation clarissimus..."
+      },
+      {
+        "chunk_id": "Augustus_chunk_54",
+        "score": 0.5,
+        "snippet": "Title of Augustus\nSenate  awarded  him  with  a  golden  shield  displayed  in  the  meeting hall  of  the  Curia,  bear..."
+      },
+      {
+        "chunk_id": "Neural_network_(machine_learning)_chunk_38",
+        "score": 0.3333,
+        "snippet": "Types\n- Transformers: These use attention to analyze every token in the input stream against every other token in the st..."
+      },
+      {
+        "chunk_id": "Long_short-term_memory_chunk_14",
+        "score": 0.3333,
+        "snippet": "Development\nAspects of LSTM were anticipated by \"focused back-propagation\", [64] cited by the LSTM paper. [1] Sepp Hochr..."
+      },
+      {
+        "chunk_id": "Recurrent_neural_network_chunk_2",
+        "score": 0.25,
+        "snippet": "Before modern\nOne origin of RNN was neuroscience. The word \"recurrent\" is used to describe loop-like structures in anato..."
+      }
+    ]
+  },
+  {
+    "id": "q_066",
+    "query": "How does gradient boosting improve its predictions?",
+    "expected": [
+      "Gradient_boosting_chunk_3"
+    ],
+    "got": [
+      {
+        "chunk_id": "Gradient_boosting_chunk_2",
+        "score": 0.75,
+        "snippet": "Informal introduction\n(This section follows the exposition by Cheng Li. [7] )\nLike other boosting methods, gradient boos..."
+      },
+      {
+        "chunk_id": "Gradient_boosting_chunk_13",
+        "score": 0.7,
+        "snippet": "Stochastic gradient boosting\nperformance improvement by evaluating predictions on those observations which were not used..."
+      },
+      {
+        "chunk_id": "Gradient_boosting_chunk_8",
+        "score": 0.5833,
+        "snippet": "Gradient tree boosting\nGradient boosting is typically used with decision trees (especially CARTs) of a fixed size as bas..."
+      },
+      {
+        "chunk_id": "Gradient_boosting_chunk_0",
+        "score": 0.5,
+        "snippet": "Gradient boosting\nGradient boosting is  a  machine  learning  technique  based  on  boosting  in  a  functional  space, ..."
+      },
+      {
+        "chunk_id": "Gradient_boosting_chunk_12",
+        "score": 0.2714,
+        "snippet": "Stochastic gradient boosting\nSoon  after  the  introduction  of  gradient  boosting,  Friedman  proposed  a  minor  modi..."
+      }
+    ]
+  }
+]

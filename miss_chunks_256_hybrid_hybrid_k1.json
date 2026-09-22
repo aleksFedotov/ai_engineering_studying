@@ -1,0 +1,241 @@
+[
+  {
+    "question_id": "q_008",
+    "question": "What was the outcome of the battle of Lake Trasimene?",
+    "expected_ids": [
+      "Punic_Wars_chunk_31"
+    ],
+    "retrieved": [
+      {
+        "id": "Hannibal_chunk_27",
+        "score": 0.75,
+        "snippet": "Battle of Lake Trasimene\nThe only alternative route to central Italy lay at the mouth of the Arno. This area was mostly marshland and happened to be o"
+      }
+    ]
+  },
+  {
+    "question_id": "q_010",
+    "question": "What health problems can excessive procrastination cause?",
+    "expected_ids": [
+      "Procrastination_chunk_12"
+    ],
+    "retrieved": [
+      {
+        "id": "Procrastination_chunk_28",
+        "score": 0.8333,
+        "snippet": "Links to other afflictions\nFor some people, procrastination can be persistent and tremendously disruptive to everyday life. For these individuals, pro"
+      }
+    ]
+  },
+  {
+    "question_id": "q_014",
+    "question": "What garment replaced the toga in Roman fashion?",
+    "expected_ids": [
+      "Roman_Empire_chunk_93"
+    ],
+    "retrieved": [
+      {
+        "id": "Roman_Empire_chunk_91",
+        "score": 0.75,
+        "snippet": "Clothing\nTogate statue in the Museo Archeologico Nazionale d'Abruzzo In  a  status-conscious  society  like  that  of  the  Romans,  clothing  and per"
+      }
+    ]
+  },
+  {
+    "question_id": "q_015",
+    "question": "What legislation did Caesar pass to combat provincial corruption during his consulship?",
+    "expected_ids": [
+      "Julius_Caesar_chunk_29"
+    ],
+    "retrieved": [
+      {
+        "id": "Julius_Caesar_chunk_59",
+        "score": 0.8333,
+        "snippet": "Legislation\nThe collegia ,  civic associations restored by Clodius in 58 BC, were again abolished. [211] His actions to reward his supporters saw him "
+      }
+    ]
+  },
+  {
+    "question_id": "q_016",
+    "question": "What was the purpose of the Pirs module on the ISS?",
+    "expected_ids": [
+      "International_Space_Station_chunk_66"
+    ],
+    "retrieved": [
+      {
+        "id": "International_Space_Station_chunk_67",
+        "score": 0.8333,
+        "snippet": "Pirs\nCommander Volkov stands on Pirs with his back to the Soyuz whilst operating the manual Strela crane (which is holding photographer Oleg Kononenko"
+      }
+    ]
+  },
+  {
+    "question_id": "q_018",
+    "question": "What did the Event Horizon Telescope image confirm about Sagittarius A*?",
+    "expected_ids": [
+      "Black_hole_chunk_71"
+    ],
+    "retrieved": [
+      {
+        "id": "Black_hole_chunk_68",
+        "score": 1.0,
+        "snippet": "Direct interferometry\nThe Event Horizon Telescope (EHT) is a global system of radio telescopes capable of directly observing a black hole shadow. [44]"
+      }
+    ]
+  },
+  {
+    "question_id": "q_033",
+    "question": "Why were Crispus and Fausta executed?",
+    "expected_ids": [
+      "Constantine_the_Great_chunk_65"
+    ],
+    "retrieved": [
+      {
+        "id": "Constantine_the_Great_chunk_66",
+        "score": 0.8333,
+        "snippet": "Executions of Crispus and Fausta\n[275] Adrian Goldsworthy speculates an alternative explanation for the execution of Crispus was Constantine's desire "
+      }
+    ]
+  },
+  {
+    "question_id": "q_034",
+    "question": "What is the moisture content of dried pasta?",
+    "expected_ids": [
+      "Pasta_chunk_23"
+    ],
+    "retrieved": [
+      {
+        "id": "Pasta_chunk_21",
+        "score": 0.8333,
+        "snippet": "Factory-manufactured\nThe ingredients to make dried pasta usually include water and semolina flour; egg for color and richness (in  some types of pasta"
+      }
+    ]
+  },
+  {
+    "question_id": "q_035",
+    "question": "What is the significance of the 2:3 resonance for plutinos like Pluto?",
+    "expected_ids": [
+      "Kuiper_belt_chunk_22"
+    ],
+    "retrieved": [
+      {
+        "id": "Kuiper_belt_chunk_23",
+        "score": 1.0,
+        "snippet": "Resonances\nof  this  family  are  known  as  plutinos.  Many  plutinos,  including  Pluto,  have  orbits  that  cross  that  of Neptune, although thei"
+      }
+    ]
+  },
+  {
+    "question_id": "q_049",
+    "question": "What is the composition of Mars's atmosphere?",
+    "expected_ids": [
+      "Solar_System_chunk_39"
+    ],
+    "retrieved": [
+      {
+        "id": "Solar_System_chunk_34",
+        "score": 0.5625,
+        "snippet": "Inner planets\nThe  four terrestrial or inner planets have dense,  rocky compositions,  few  or  no  moons,  and  no  ring  systems.  They are composed"
+      }
+    ]
+  },
+  {
+    "question_id": "q_060",
+    "question": "What is a neutron star and how is it formed?",
+    "expected_ids": [
+      "Neutron_star_chunk_0"
+    ],
+    "retrieved": [
+      {
+        "id": "Neutron_star_chunk_30",
+        "score": 0.75,
+        "snippet": "Structure\nIn neutron stars, the neutron drip is the transition point where nuclei become so neutron-rich that they can no longer hold additional neutr"
+      }
+    ]
+  },
+  {
+    "question_id": "q_063",
+    "question": "What significant event occurred in 221 BC involving Hannibal?",
+    "expected_ids": [
+      "Hannibal_chunk_11",
+      "Hannibal_chunk_76"
+    ],
+    "retrieved": [
+      {
+        "id": "Hannibal_chunk_0",
+        "score": 0.5,
+        "snippet": "Hannibal\nHannibal (/ˈhænɪbəl/;  Punic: 𐤋𐤏𐤁𐤍𐤇 ;  247  -  between  183  and  181  BC) was a Carthaginian general and statesman who commanded the forces "
+      }
+    ]
+  },
+  {
+    "question_id": "q_066",
+    "question": "How does gradient boosting improve its predictions?",
+    "expected_ids": [
+      "Gradient_boosting_chunk_3"
+    ],
+    "retrieved": [
+      {
+        "id": "Gradient_boosting_chunk_2",
+        "score": 0.75,
+        "snippet": "Informal introduction\n(This section follows the exposition by Cheng Li. [7] )\nLike other boosting methods, gradient boosting combines weak \"learners\" "
+      }
+    ]
+  },
+  {
+    "question_id": "q_074",
+    "question": "What significant action did Theodosius I take regarding paganism during his reign?",
+    "expected_ids": [
+      "Byzantine_Empire_chunk_10"
+    ],
+    "retrieved": [
+      {
+        "id": "Fall_of_the_Western_Roman_Empire_chunk_43",
+        "score": 1.0,
+        "snippet": "Partial recovery in the Balkans, internal corruption, and financial desperation\nFor  centuries,  Theodosius  was  regarded  as  a  champion  of  Chris"
+      }
+    ]
+  },
+  {
+    "question_id": "q_083",
+    "question": "What type of planetary system is the Solar System classified as?",
+    "expected_ids": [
+      "Solar_System_chunk_27"
+    ],
+    "retrieved": [
+      {
+        "id": "Solar_System_chunk_0",
+        "score": 0.6429,
+        "snippet": "Solar System\nThe Solar  System is  the  gravitationally  bound system  of  the  Sun  and  the  masses  that  orbit  it, most  prominently  its  eight "
+      }
+    ]
+  },
+  {
+    "question_id": "q_090",
+    "question": "What was the role of the Aquilifer in a Roman legion?",
+    "expected_ids": [
+      "Roman_legion_chunk_34"
+    ],
+    "retrieved": [
+      {
+        "id": "Roman_legion_chunk_38",
+        "score": 0.75,
+        "snippet": "Symbols\nReenacters portraying Roman legionaries of Legio XV Apollinaris regaining its eagle in battle was so severely mauled that it was no longer eff"
+      }
+    ]
+  },
+  {
+    "question_id": "q_093",
+    "question": "What is the expiration date for Windows 10 Enterprise 2021 LTSC support?",
+    "expected_ids": [
+      "Windows_10_chunk_53"
+    ],
+    "retrieved": [
+      {
+        "id": "Windows_10_chunk_52",
+        "score": 0.8333,
+        "snippet": "Support and update branches\n\nSupport status summary, 1 = Support status summary. Expiration date, 1 = Expiration date. Servicing/normal support, 1 = O"
+      }
+    ]
+  }
+]

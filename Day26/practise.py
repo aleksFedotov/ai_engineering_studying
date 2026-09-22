@@ -63,7 +63,7 @@ def load_bm25_index():
     return ids, BM25Okapi(tokenized),id2chunk
 
 def bm25_ranking(query, ids, bm25, top_k=20):
-    scores = bm25.get_scores(query.lower().split())
+    scores = bm25.get_scores(re.findall(r"\w+", query.lower()))
     top_idx = np.argsort(-np.asarray(scores))[:top_k]
     return [ids[i] for i in top_idx]
 

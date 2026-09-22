@@ -1,0 +1,12 @@
+ень 27 — Отладка и оценка retrieval (~2.5 ч)
+Источники:
+Retrieval Evaluation for RAG — Metrics Guide (с кодом): https://www.dataaihub.co/learn/retrieval-evaluation
+Evaluating Retrieval and RAG Systems (IBM — формулы NDCG/F-beta): https://community.ibm.com/community/user/blogs/aditya-santhosh/2025/10/03/understanding-metrics-ndcg-f-beta-etc
+Common RAG Failure Modes (систематика сбоев): https://theaidatabaseblog.com/learn/common-rag-failure-modes/
+Что сделать:
+Собрать golden-set: 30 вопросов по вашим документам, для каждого вручную отметить релевантные чанки
+Реализовать метрики Recall@1/5 и MRR; посчитать для базового пайплайна и для гибрида с реранкингом
+Интерпретировать по порогам: Recall@5 < 0.60 — retrieval сломан; 0.60–0.80 — чинить чанкинг/поиск; > 0.80 — переходить к генерации
+Разложить вчерашние неудачи по классификации сбоев: чанкинг / retrieval / сборка контекста / генерация / устаревшие данные
+Эксперимент: изменить размер чанка (256 vs 512) → пересчитать Recall@5 → записать дельту
+Контрольная точка: есть число, а не ощущение — «retrieval находит нужное в топ-5 в X% случаев», и вы знаете, какой компонент менять, чтобы число росло.

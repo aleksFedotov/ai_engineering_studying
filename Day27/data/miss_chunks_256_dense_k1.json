@@ -1,0 +1,272 @@
+[
+  {
+    "id": "q_009",
+    "query": "What trick allows SVMs to perform non-linear classification?",
+    "expected": [
+      "Support_vector_machine_chunk_0",
+      "Support_vector_machine_chunk_7",
+      "Support_vector_machine_chunk_12",
+      "Support_vector_machine_chunk_13",
+      "Support_vector_machine_chunk_15",
+      "Support_vector_machine_chunk_31"
+    ],
+    "got": [
+      {
+        "chunk_id": "Support_vector_machine_chunk_1",
+        "score": 0.8616,
+        "snippet": "Support vector machine\nThe support vector clustering [4] algorithm, created by Hava Siegelmann and Vladimir Vapnik, appl..."
+      }
+    ]
+  },
+  {
+    "id": "q_010",
+    "query": "What health problems can excessive procrastination cause?",
+    "expected": [
+      "Procrastination_chunk_12"
+    ],
+    "got": [
+      {
+        "chunk_id": "Procrastination_chunk_28",
+        "score": 0.8948,
+        "snippet": "Links to other afflictions\nFor some people, procrastination can be persistent and tremendously disruptive to everyday li..."
+      }
+    ]
+  },
+  {
+    "id": "q_011",
+    "query": "What event marked the end of Hannibal's success in Italy?",
+    "expected": [
+      "Hannibal_chunk_44"
+    ],
+    "got": [
+      {
+        "chunk_id": "Punic_Wars_chunk_1",
+        "score": 0.8381,
+        "snippet": "Punic Wars\nThe Second Punic War began in 218 BC and witnessed the Carthaginian general Hannibal's crossing of the  Alps ..."
+      }
+    ]
+  },
+  {
+    "id": "q_014",
+    "query": "What garment replaced the toga in Roman fashion?",
+    "expected": [
+      "Roman_Empire_chunk_93"
+    ],
+    "got": [
+      {
+        "chunk_id": "Roman_Empire_chunk_91",
+        "score": 0.8766,
+        "snippet": "Clothing\nTogate statue in the Museo Archeologico Nazionale d'Abruzzo In  a  status-conscious  society  like  that  of  t..."
+      }
+    ]
+  },
+  {
+    "id": "q_015",
+    "query": "What legislation did Caesar pass to combat provincial corruption during his consulship?",
+    "expected": [
+      "Julius_Caesar_chunk_29"
+    ],
+    "got": [
+      {
+        "chunk_id": "Julius_Caesar_chunk_59",
+        "score": 0.8403,
+        "snippet": "Legislation\nThe collegia ,  civic associations restored by Clodius in 58 BC, were again abolished. [211] His actions to ..."
+      }
+    ]
+  },
+  {
+    "id": "q_018",
+    "query": "What did the Event Horizon Telescope image confirm about Sagittarius A*?",
+    "expected": [
+      "Black_hole_chunk_71"
+    ],
+    "got": [
+      {
+        "chunk_id": "Black_hole_chunk_68",
+        "score": 0.864,
+        "snippet": "Direct interferometry\nThe Event Horizon Telescope (EHT) is a global system of radio telescopes capable of directly obser..."
+      }
+    ]
+  },
+  {
+    "id": "q_025",
+    "query": "What notable entertainment events did Augustus stage in Rome?",
+    "expected": [
+      "Augustus_chunk_103"
+    ],
+    "got": [
+      {
+        "chunk_id": "Augustus_chunk_4",
+        "score": 0.8375,
+        "snippet": "Roman emperor\nAugustus dramatically enlarged the Empire, annexing Egypt, Dalmatia, Pannonia, Noricum, and Raetia, expand..."
+      }
+    ]
+  },
+  {
+    "id": "q_033",
+    "query": "Why were Crispus and Fausta executed?",
+    "expected": [
+      "Constantine_the_Great_chunk_65"
+    ],
+    "got": [
+      {
+        "chunk_id": "Constantine_the_Great_chunk_66",
+        "score": 0.8796,
+        "snippet": "Executions of Crispus and Fausta\n[275] Adrian Goldsworthy speculates an alternative explanation for the execution of Cri..."
+      }
+    ]
+  },
+  {
+    "id": "q_034",
+    "query": "What is the moisture content of dried pasta?",
+    "expected": [
+      "Pasta_chunk_23"
+    ],
+    "got": [
+      {
+        "chunk_id": "Pasta_chunk_16",
+        "score": 0.8904,
+        "snippet": "Dried\nDried pasta can also be defined as factory-made pasta because it is usually produced in large amounts that require..."
+      }
+    ]
+  },
+  {
+    "id": "q_035",
+    "query": "What is the significance of the 2:3 resonance for plutinos like Pluto?",
+    "expected": [
+      "Kuiper_belt_chunk_22"
+    ],
+    "got": [
+      {
+        "chunk_id": "Kuiper_belt_chunk_23",
+        "score": 0.8943,
+        "snippet": "Resonances\nof  this  family  are  known  as  plutinos.  Many  plutinos,  including  Pluto,  have  orbits  that  cross  t..."
+      }
+    ]
+  },
+  {
+    "id": "q_036",
+    "query": "What are some common sources of stress for astronauts in space?",
+    "expected": [
+      "International_Space_Station_chunk_133"
+    ],
+    "got": [
+      {
+        "chunk_id": "International_Space_Station_chunk_134",
+        "score": 0.8789,
+        "snippet": "Stress\nThe  ISS  working  environment  includes  further  stress  caused  by  living  and  working  in  cramped  conditi..."
+      }
+    ]
+  },
+  {
+    "id": "q_056",
+    "query": "What is the title of the 1947 paper by Clemence?",
+    "expected": [],
+    "got": [
+      {
+        "chunk_id": "Roman_Empire_chunk_38",
+        "score": 0.7637,
+        "snippet": "Census rank\nwas refined further with titles such as vir illustris (\"illustrious man\"). [178] The appellation clarissimus..."
+      }
+    ]
+  },
+  {
+    "id": "q_063",
+    "query": "What significant event occurred in 221 BC involving Hannibal?",
+    "expected": [
+      "Hannibal_chunk_11",
+      "Hannibal_chunk_76"
+    ],
+    "got": [
+      {
+        "chunk_id": "Hannibal_chunk_0",
+        "score": 0.8406,
+        "snippet": "Hannibal\nHannibal (/ˈhænɪbəl/;  Punic: 𐤋𐤏𐤁𐤍𐤇 ;  247  -  between  183  and  181  BC) was a Carthaginian general and state..."
+      }
+    ]
+  },
+  {
+    "id": "q_066",
+    "query": "How does gradient boosting improve its predictions?",
+    "expected": [
+      "Gradient_boosting_chunk_3"
+    ],
+    "got": [
+      {
+        "chunk_id": "Gradient_boosting_chunk_2",
+        "score": 0.8861,
+        "snippet": "Informal introduction\n(This section follows the exposition by Cheng Li. [7] )\nLike other boosting methods, gradient boos..."
+      }
+    ]
+  },
+  {
+    "id": "q_074",
+    "query": "What significant action did Theodosius I take regarding paganism during his reign?",
+    "expected": [
+      "Byzantine_Empire_chunk_10"
+    ],
+    "got": [
+      {
+        "chunk_id": "Fall_of_the_Western_Roman_Empire_chunk_43",
+        "score": 0.8443,
+        "snippet": "Partial recovery in the Balkans, internal corruption, and financial desperation\nFor  centuries,  Theodosius  was  regard..."
+      }
+    ]
+  },
+  {
+    "id": "q_079",
+    "query": "What new functionality does Python 3.15 introduce for imports?",
+    "expected": [
+      "Python_(programming_language)_chunk_17"
+    ],
+    "got": [
+      {
+        "chunk_id": "History_of_Python_chunk_11",
+        "score": 0.8564,
+        "snippet": "Features\nSome of the major changes included for Python 3.0 were:\n- Changing print so that it is a built-in function, not..."
+      }
+    ]
+  },
+  {
+    "id": "q_082",
+    "query": "What city did Hannibal fail to control after capturing it in 212 BC?",
+    "expected": [
+      "Hannibal_chunk_41"
+    ],
+    "got": [
+      {
+        "chunk_id": "Hannibal_chunk_39",
+        "score": 0.85,
+        "snippet": "Stalemate\nThe forces detached to his lieutenants were generally unable to hold their own, and neither his home governmen..."
+      }
+    ]
+  },
+  {
+    "id": "q_083",
+    "query": "What type of planetary system is the Solar System classified as?",
+    "expected": [
+      "Solar_System_chunk_27"
+    ],
+    "got": [
+      {
+        "chunk_id": "Solar_System_chunk_0",
+        "score": 0.8613,
+        "snippet": "Solar System\nThe Solar  System is  the  gravitationally  bound system  of  the  Sun  and  the  masses  that  orbit  it, ..."
+      }
+    ]
+  },
+  {
+    "id": "q_086",
+    "query": "What is the release timeframe for Windows 11 version 26H2?",
+    "expected": [
+      "Windows_11_chunk_40"
+    ],
+    "got": [
+      {
+        "chunk_id": "Windows_11_chunk_14",
+        "score": 0.8963,
+        "snippet": "Beta (26H1) :\n[(10.0.28020.2818) (August 31, 2026 [10] ) [±] (https://en.wikipedi a.org/w/index.php?title =Template:Late..."
+      }
+    ]
+  }
+]

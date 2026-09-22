@@ -1,0 +1,129 @@
+[
+  {
+    "question_id": "q_008",
+    "question": "What was the outcome of the battle of Lake Trasimene?",
+    "expected_ids": [
+      "Punic_Wars_chunk_17"
+    ],
+    "retrieved": [
+      {
+        "id": "Hannibal_chunk_13",
+        "score": 1.0,
+        "snippet": "Battle of Lake Trasimene\nThe only alternative route to central Italy lay at the mouth of the Arno. This area was mostly marshland and happened to be o"
+      }
+    ]
+  },
+  {
+    "question_id": "q_015",
+    "question": "What legislation did Caesar pass to combat provincial corruption during his consulship?",
+    "expected_ids": [
+      "Julius_Caesar_chunk_14"
+    ],
+    "retrieved": [
+      {
+        "id": "Julius_Caesar_chunk_29",
+        "score": 0.8333,
+        "snippet": "Legislation\n- with the intent to cultivate gratitude and draw a contrast between himself and the vengeful dictatorship of Sulla. [214] The building pr"
+      }
+    ]
+  },
+  {
+    "question_id": "q_032",
+    "question": "What was the role of gladiators in Roman spectacles?",
+    "expected_ids": [
+      "Roman_Empire_chunk_43"
+    ],
+    "retrieved": [
+      {
+        "id": "Roman_Empire_chunk_42",
+        "score": 1.0,
+        "snippet": "Spectacles\nMany Roman amphitheatres, circuses and theatres built in cities outside Italy are visible as ruins today. [351] The local ruling elite were"
+      }
+    ]
+  },
+  {
+    "question_id": "q_049",
+    "question": "What is the composition of Mars's atmosphere?",
+    "expected_ids": [
+      "Solar_System_chunk_18"
+    ],
+    "retrieved": [
+      {
+        "id": "Mars_chunk_15",
+        "score": 1.0,
+        "snippet": "Atmosphere\nMars lost its magnetosphere 4 billion years ago, [122] possibly because  of  numerous  asteroid  strikes, [123] so  the  solar  wind intera"
+      }
+    ]
+  },
+  {
+    "question_id": "q_051",
+    "question": "What role did the triarii play in the Roman army during the Mid Republic?",
+    "expected_ids": [
+      "Roman_legion_chunk_7"
+    ],
+    "retrieved": [
+      {
+        "id": "Battle_of_Cannae_chunk_22",
+        "score": 0.6667,
+        "snippet": "Aftermath\nof soldiers. The war in Italy still had occasional battles, but was focused on taking strongpoints and constant fighting according to the Fa"
+      }
+    ]
+  },
+  {
+    "question_id": "q_060",
+    "question": "What is a neutron star and how is it formed?",
+    "expected_ids": [
+      "Neutron_star_chunk_0"
+    ],
+    "retrieved": [
+      {
+        "id": "Neutron_star_chunk_17",
+        "score": 0.7,
+        "snippet": "Structure\nIn neutron stars, the neutron drip is the transition point where nuclei become so neutron-rich that they can no longer hold additional neutr"
+      }
+    ]
+  },
+  {
+    "question_id": "q_063",
+    "question": "What significant event occurred in 221 BC involving Hannibal?",
+    "expected_ids": [
+      "Hannibal_chunk_5",
+      "Hannibal_chunk_37"
+    ],
+    "retrieved": [
+      {
+        "id": "Hannibal_chunk_0",
+        "score": 0.5,
+        "snippet": "Hannibal\nHannibal (/ˈhænɪbəl/;  Punic: 𐤋𐤏𐤁𐤍𐤇 ;  247  -  between  183  and  181  BC) was a Carthaginian general and statesman who commanded the forces "
+      }
+    ]
+  },
+  {
+    "question_id": "q_089",
+    "question": "What is the hypothesized influence on extreme trans-Neptunian objects' orbits?",
+    "expected_ids": [
+      "Solar_System_chunk_31"
+    ],
+    "retrieved": [
+      {
+        "id": "Solar_System_chunk_30",
+        "score": 0.8333,
+        "snippet": "Extreme trans-Neptunian objects\nSome objects in the Solar System have a very large orbit, and\nThe orbital eccentricities and inclinations of the scatt"
+      }
+    ]
+  },
+  {
+    "question_id": "q_090",
+    "question": "What was the role of the Aquilifer in a Roman legion?",
+    "expected_ids": [
+      "Roman_legion_chunk_17"
+    ],
+    "retrieved": [
+      {
+        "id": "Roman_legion_chunk_19",
+        "score": 0.8333,
+        "snippet": "Symbols\nFrom  104  BC  onwards,  each  legion  used  an aquila (eagle)  as  its  standard  symbol.  The  symbol  was carried by an officer known as aq"
+      }
+    ]
+  }
+]

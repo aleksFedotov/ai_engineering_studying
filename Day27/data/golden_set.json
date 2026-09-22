@@ -1,0 +1,565 @@
+[
+  {
+    "id": "q_001",
+    "question": "What was the global market share of Windows 11 as of January 31, 2026?",
+    "ground_truth": "Windows 11 had a global market share of 62.16%.",
+    "anchor": "Windows 11 62.16%",
+    "source": "Windows_10.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_002",
+    "question": "What did Subrahmanyan Chandrasekhar discover about white dwarf stars?",
+    "ground_truth": "In 1931 Chandrasekhar showed that electron-degenerate matter is stable only below a certain limiting mass (now called the Chandrasekhar limit, ~1.4 solar masses), which explained the characteristics of known white dwarfs.",
+    "relevant": [
+      {"source": "White_dwarf.pdf", "anchor": "maximum mass"},
+      {"source": "Black_hole.pdf", "anchor": "stable below a certain limiting mass"}
+    ],
+    "is_negative": false
+  },
+  {
+    "id": "q_004",
+    "question": "What is reinforcement learning from human feedback (RLHF) used for in NLP?",
+    "ground_truth": "RLHF is used to train large language models by comparing or ranking outputs to optimize performance based on human preferences.",
+    "anchor": "Reinforcement learning from human feedback (RLHF)",
+    "source": "Reinforcement_learning.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_008",
+    "question": "What was the outcome of the battle of Lake Trasimene?",
+    "ground_truth": "Hannibal completely defeated a Roman army, killing 15,000 Romans and taking 15,000 prisoners.",
+    "relevant": [
+      {"source": "Punic_Wars.pdf", "anchor": "15,000"},
+      {"source": "Hannibal.pdf", "anchor": "Battle of Lake Trasimene"}
+    ],
+    "is_negative": false
+  },
+  {
+    "id": "q_009",
+    "question": "What trick allows SVMs to perform non-linear classification?",
+    "ground_truth": "The hinge loss function is used.",
+    "relevant": [
+      {"source": "Support_vector_machine.pdf", "anchor": "kernel trick"},
+      {"source": "Support_vector_machine.pdf", "anchor": "Nonlinear kernels"}
+    ],
+    "is_negative": false
+  },
+  {
+    "id": "q_010",
+    "question": "What health problems can excessive procrastination cause?",
+    "ground_truth": "Excessive procrastination can result in health problems, stress, anxiety, a sense of guilt and crisis, as well as loss of personal productivity and social disapproval.",
+    "anchor": "result in health problems, stress",
+    "source": "Procrastination.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_011",
+    "question": "What event marked the end of Hannibal's success in Italy?",
+    "ground_truth": "The combination of Hasdrubal's defeat and the failure of Mago marked the end of Hannibal's success in Italy.",
+    "anchor": "marked the end to Hannibal's success",
+    "source": "Hannibal.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_013",
+    "question": "What was the main discovery made by astronomers in the early 1990s regarding PSR B1620-26 b?",
+    "ground_truth": "Astronomers discovered a third object was needed to explain the observed Doppler shifts.",
+    "anchor": "a third object was needed",
+    "source": "Exoplanet.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_014",
+    "question": "What garment replaced the toga in Roman fashion?",
+    "ground_truth": "The pallium replaced the toga as a garment embodying social unity.",
+    "anchor": "the pallium as a garment embodying",
+    "source": "Roman_Empire.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_015",
+    "question": "What legislation did Caesar pass to combat provincial corruption during his consulship?",
+    "ground_truth": "Caesar passed the lex Julia de repetundis to crack down on provincial corruption.",
+    "anchor": "lex Julia de repetundis",
+    "source": "Julius_Caesar.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_016",
+    "question": "What was the purpose of the Pirs module on the ISS?",
+    "ground_truth": "Pirs served as the primary Russian airlock on the station, being used to store and refurbish the Russian Orlan spacesuits.",
+    "anchor": "primary Russian airlock on the station",
+    "source": "International_Space_Station.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_018",
+    "question": "What did the Event Horizon Telescope image confirm about Sagittarius A*?",
+    "ground_truth": "It confirmed that Sagittarius A* is a black hole.",
+    "anchor": "it is indeed a black hole",
+    "source": "Black_hole.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_019",
+    "question": "What is spin-down luminosity in neutron stars?",
+    "ground_truth": "Spin-down luminosity is the calculated loss rate of rotational energy in neutron stars, represented by the symbol (E-dot).",
+    "anchor": "spindown luminosity , which is given",
+    "source": "Neutron_star.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_021",
+    "question": "What cultural significance does Argentine pizza hold in Buenos Aires?",
+    "ground_truth": "Argentine pizza is regarded as a cultural heritage and icon of Buenos Aires.",
+    "anchor": "cultural heritage and icon of the city",
+    "source": "Pizza.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_022",
+    "question": "Who is the current commander of the crew?",
+    "ground_truth": "Jessica Meir is the current commander.",
+    "anchor": "Jessica Meir, current commander",
+    "source": "International_Space_Station.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_025",
+    "question": "What notable entertainment events did Augustus stage in Rome?",
+    "ground_truth": "Augustus staged gladiatorial bouts, lion hunts, and a mock naval battle.",
+    "anchor": "provided grand spectacles in Rome",
+    "source": "Augustus.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_026",
+    "question": "How does the GDNP algorithm modify batch normalization?",
+    "ground_truth": "The GDNP algorithm slightly modifies the batch normalization step for ease of mathematical analysis.",
+    "anchor": "modifies the batch normalization step",
+    "source": "Batch_normalization.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_029",
+    "question": "What was a major breakthrough in the Transformer architecture?",
+    "ground_truth": "The major breakthrough was self-attention, enabling the model to capture global dependencies.",
+    "anchor": "the major breakthrough came with self-attention",
+    "source": "Attention_(machine_learning).pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_030",
+    "question": "What is one example of scripted behavior in web pages?",
+    "ground_truth": "Loading new web page content without reloading the page, via Ajax or a WebSocket.",
+    "anchor": "Loading new web page content",
+    "source": "JavaScript.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_032",
+    "question": "What was the role of gladiators in Roman spectacles?",
+    "ground_truth": "Gladiators were trained combatants who might be slaves, convicts, or free volunteers.",
+    "anchor": "trained combatants who might be slaves",
+    "source": "Roman_Empire.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_033",
+    "question": "Why were Crispus and Fausta executed?",
+    "ground_truth": "Crispus and Fausta were executed due to their immoralities and possibly to secure Constantine's control over his heirs.",
+    "anchor": "killed Crispus and Fausta for their immoralities",
+    "source": "Constantine_the_Great.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_034",
+    "question": "What is the moisture content of dried pasta?",
+    "ground_truth": "The moisture content of dried pasta is typically around 12%.",
+    "anchor": "moisture content of dried pasta is typically around 12%",
+    "source": "Pasta.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_035",
+    "question": "What is the significance of the 2:3 resonance for plutinos like Pluto?",
+    "ground_truth": "The 2:3 resonance allows plutinos to avoid colliding with Neptune despite having orbits that cross its path.",
+    "anchor": "2:3 (or 3:2) resonance",
+    "source": "Kuiper_belt.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_036",
+    "question": "What are some common sources of stress for astronauts in space?",
+    "ground_truth": "Common sources of stress include isolation from peers and family, public scrutiny, and living in cramped conditions with diverse cultures and languages.",
+    "anchor": "Common sources of stress in early US missions",
+    "source": "International_Space_Station.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_037",
+    "question": "What was the size of Hannibal's army when he entered Gaul?",
+    "ground_truth": "Hannibal entered Gaul with 40,000 foot soldiers and 12,000 horsemen.",
+    "anchor": "Hannibal reportedly entered Gaul with 40,000 foot soldiers and 12,000 horsemen.",
+    "source": "Hannibal.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_040",
+    "question": "What are some common features assessed in generative pre-trained transformer models?",
+    "ground_truth": "Common features include accuracy, robustness, bias, and toxicity.",
+    "anchor": "accuracy on standard datasets",
+    "source": "Generative_pre-trained_transformer.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_042",
+    "question": "What does the Jaccard index measure?",
+    "ground_truth": "The Jaccard index quantifies the similarity between two datasets.",
+    "anchor": "quantify the similarity between two datasets",
+    "source": "Cluster_analysis.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_044",
+    "question": "What is the formula for escape speed from a celestial body?",
+    "ground_truth": "Escape speed is given by the formula involving the universal gravitational constant G and the mass M of the body.",
+    "anchor": "Escape speed at a distance d",
+    "source": "Escape_velocity.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_046",
+    "question": "What is the purpose of the International Docking Adapter (IDA)?",
+    "ground_truth": "The IDA converts APAS-95 to the NASA Docking System (NDS).",
+    "anchor": "convert APAS-95 to the NASA Docking System",
+    "source": "International_Space_Station.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_047",
+    "question": "When was Windows 10 officially announced for retail purchase?",
+    "ground_truth": "Windows 10 was officially announced on July 29, 2015.",
+    "anchor": "officially announced that Windows 10",
+    "source": "Windows_10.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_049",
+    "question": "What is the composition of Mars's atmosphere?",
+    "ground_truth": "Mars's atmosphere is composed mostly of carbon dioxide.",
+    "anchor": "atmosphere composed mostly of carbon dioxide",
+    "source": "Solar_System.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_050",
+    "question": "What was the primary function of the velites in the Roman army during the Mid Republic?",
+    "ground_truth": "The primary function of the velites was to act as skirmishers and javelin-throwers, engaging the enemy early to harass them or cover troop movements.",
+    "anchor": "act as skirmishers - javelin-throwers",
+    "source": "Roman_legion.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_051",
+    "question": "What role did the triarii play in the Roman army during the Mid Republic?",
+    "ground_truth": "The triarii were veteran soldiers used in extreme situations, serving as reserves or barrier troops behind the hastati and principes.",
+    "anchor": "served primarily as reserves or barrier troops",
+    "source": "Roman_legion.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_052",
+    "question": "Which planets have the highest albedos at optical and near-infrared wavelengths?",
+    "ground_truth": "Venus, Uranus, Jupiter, Neptune, Saturn, Earth, Titan, HD 189733b, and Mars.",
+    "anchor": "the highest albedos at most",
+    "source": "Exoplanet.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_053",
+    "question": "What elements enrich Mars's core?",
+    "ground_truth": "Mars's core is enriched in light elements such as sulfur, oxygen, carbon, and hydrogen.",
+    "anchor": "enriched in light elements such as sulfur",
+    "source": "Mars.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_055",
+    "question": "What is the status quo bias?",
+    "ground_truth": "Status quo bias is the tendency to hold to the current situation rather than an alternative situation, to avoid risk and loss.",
+    "anchor": "Tendency to hold to the current situation",
+    "source": "Cognitive_bias.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_056",
+    "question": "What is the title of the 1947 paper by Clemence?",
+    "ground_truth": "The title is \"The Relativity Effect in Planetary Motions\".",
+    "anchor": "The Relativity Effect in Planetary Motions",
+    "source": "Solar_System.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_057",
+    "question": "What was introduced in 2017 that improved NLP models?",
+    "ground_truth": "The transformer architecture was introduced in 2017.",
+    "anchor": "the transformer architecture for deep learning",
+    "source": "Generative_pre-trained_transformer.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_059",
+    "question": "What algorithm is commonly used to minimize error in neural networks?",
+    "ground_truth": "Gradient descent is commonly used to minimize error.",
+    "anchor": "commonly used algorithm to find",
+    "source": "Backpropagation.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_060",
+    "question": "What is a neutron star and how is it formed?",
+    "ground_truth": "A neutron star is formed from the gravitational collapse of a massive supergiant star after a supernova explosion, compressing the core to atomic nuclei density.",
+    "anchor": "gravitationally collapsed core",
+    "source": "Neutron_star.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_062",
+    "question": "What strategic maneuver did the Rhodian navy use against Hannibal's fleet?",
+    "ground_truth": "The Rhodian navy used the diekplous manoeuvre to heavily damage Hannibal's warships.",
+    "anchor": "the diekplous manoeuvre",
+    "source": "Hannibal.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_063",
+    "question": "What significant event occurred in 221 BC involving Hannibal?",
+    "ground_truth": "Hannibal was proclaimed commander-in-chief by the army after Hasdrubal's assassination.",
+    "relevant": [
+      {"source": "Hannibal.pdf", "anchor": "proclaimed commander-in-chief"},
+      {"source": "Hannibal.pdf", "anchor": "221 BC – Hasdrubal assassinated"}
+    ],
+    "is_negative": false
+  },
+  {
+    "id": "q_064",
+    "question": "What ultimately happened to Licinius after his surrender to Constantine?",
+    "ground_truth": "Licinius was arrested and hanged after being accused of plotting against Constantine.",
+    "anchor": "arrested and hanged; Licinius",
+    "source": "Constantine_the_Great.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_066",
+    "question": "How does gradient boosting improve its predictions?",
+    "ground_truth": "Gradient boosting improves predictions by adding new estimators to correct the errors of its predecessors.",
+    "anchor": "correct the errors of its predecessor",
+    "source": "Gradient_boosting.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_067",
+    "question": "What was the outcome of the Roman campaign against the Kingdom of Kush led by Gaius Petronius?",
+    "ground_truth": "The campaign resulted in a peace treaty that established Maharraqa as the new border with Kush and guaranteed peaceful trade relations.",
+    "anchor": "guaranteed peaceful trade relations",
+    "source": "Augustus.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_069",
+    "question": "What is the structure of a feedforward neural network?",
+    "ground_truth": "A feedforward neural network has layers arranged where the bottom layers address raw data and the top layers reveal final results, with intermediate layers increasing abstraction.",
+    "anchor": "Nodes are arranged in layers",
+    "source": "Neural_network_(machine_learning).pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_071",
+    "question": "Who was the first Roman emperor to convert to Christianity?",
+    "ground_truth": "Constantine I was the first Roman emperor to convert to Christianity.",
+    "relevant": [
+      {"source": "Constantine_the_Great.pdf", "anchor": "first Roman emperor to convert"},
+      {"source": "Byzantine_Empire.pdf", "anchor": "first Roman emperor to convert"},
+      {"source": "Roman_Empire.pdf", "anchor": "first Roman emperor to convert"}
+    ],
+    "is_negative": false
+  },
+  {
+    "id": "q_072",
+    "question": "What is the estimated age of our galactic disk based on the white dwarf luminosity function?",
+    "ground_truth": "The estimated age of our galactic disk is 8 billion years.",
+    "anchor": "an estimate for the age of our galactic disk",
+    "source": "White_dwarf.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_073",
+    "question": "What did Giordano Bruno propose about stars and planets?",
+    "ground_truth": "Giordano Bruno proposed that fixed stars are similar to the Sun and are likewise accompanied by planets.",
+    "anchor": "fixed stars are similar to the Sun",
+    "source": "Exoplanet.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_074",
+    "question": "What significant action did Theodosius I take regarding paganism during his reign?",
+    "ground_truth": "Theodosius I actively condemned paganism.",
+    "anchor": "actively condemned paganism",
+    "source": "Byzantine_Empire.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_078",
+    "question": "What color was Augustus's hair according to scientific analysis?",
+    "ground_truth": "Augustus most likely had naturally light brown hair.",
+    "anchor": "had naturally light brown hair",
+    "source": "Augustus.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_079",
+    "question": "What new functionality does Python 3.15 introduce for imports?",
+    "ground_truth": "Python 3.15 introduces a lazy import functionality using a new keyword.",
+    "anchor": "The lazy keyword works with both import",
+    "source": "Python_(programming_language).pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_080",
+    "question": "What is the support lifecycle for Windows 11 Home and Pro editions?",
+    "ground_truth": "The support lifecycle for Windows 11 Home and Pro editions is two years.",
+    "anchor": "two years for the Home and Pro editions",
+    "source": "Windows_11.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_081",
+    "question": "What significant religious position did Caesar hold during Cinna's dominance?",
+    "ground_truth": "Caesar was named as flamen Dialis (a priest of Jupiter).",
+    "anchor": "flamen Dialis (a priest of Jupiter)",
+    "source": "Julius_Caesar.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_082",
+    "question": "What city did Hannibal fail to control after capturing it in 212 BC?",
+    "ground_truth": "Hannibal failed to obtain control of Tarentum's harbor.",
+    "anchor": "failed to obtain control of its harbor",
+    "source": "Hannibal.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_083",
+    "question": "What type of planetary system is the Solar System classified as?",
+    "ground_truth": "The Solar System is classified as an ordered system.",
+    "anchor": "The Solar System is an ordered system",
+    "source": "Solar_System.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_084",
+    "question": "What is the purpose of dividing attention weights by the square root of the key vectors' dimension?",
+    "ground_truth": "It stabilizes gradients during training.",
+    "anchor": "stabilizes gradients during training",
+    "source": "Transformer_(deep_learning).pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_086",
+    "question": "What is the release timeframe for Windows 11 version 26H2?",
+    "ground_truth": "Late 2026 is the release timeframe for Windows 11 version 26H2.",
+    "anchor": "Release.μarch = Late 2026",
+    "source": "Windows_11.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_087",
+    "question": "What is purity in the context of clustering?",
+    "ground_truth": "Purity is a measure of the extent to which clusters contain a single class.",
+    "anchor": "measure of the extent to which clusters",
+    "source": "Cluster_analysis.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_088",
+    "question": "When did the first pizzeria open in the United States?",
+    "ground_truth": "The first pizzeria in the US was opened in 1905.",
+    "anchor": "first pizzeria in the US was opened",
+    "source": "Pizza.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_089",
+    "question": "What is the hypothesized influence on extreme trans-Neptunian objects' orbits?",
+    "ground_truth": "Some astronomers suggest it may be due to a large planet beyond Neptune, termed Planet Nine.",
+    "anchor": "influence of a large planet",
+    "source": "Solar_System.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_090",
+    "question": "What was the role of the Aquilifer in a Roman legion?",
+    "ground_truth": "The Aquilifer was the standard bearer of the legion, carrying the aquila (eagle) and held a prestigious position with a duty to protect the standard.",
+    "anchor": "the legion's standard - or aquila",
+    "source": "Roman_legion.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_093",
+    "question": "What is the expiration date for Windows 10 Enterprise 2021 LTSC support?",
+    "ground_truth": "Supported until January 12, 2027.",
+    "anchor": "Supported until January 12, 2027",
+    "source": "Windows_10.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_094",
+    "question": "What is the relationship between Pluto and Neptune in terms of their orbits?",
+    "ground_truth": "Pluto has a 2:3 resonance with Neptune, meaning that Pluto orbits twice around the Sun for every three Neptunian orbits.",
+    "anchor": "Pluto has a 2:3 resonance with Neptune",
+    "source": "Solar_System.pdf",
+    "is_negative": false
+  },
+  {
+    "id": "q_neg_01",
+    "question": "What is the maximum payload weight of the James Webb Space Telescope?",
+    "ground_truth": "The provided corpus does not contain information to answer this question.",
+    "anchor": "",
+    "source": "",
+    "is_negative": true
+  },
+  {
+    "id": "q_neg_02",
+    "question": "How many total miles of fiber optic cable were laid in Tokyo during 2023?",
+    "ground_truth": "The provided corpus does not contain information to answer this question.",
+    "anchor": "",
+    "source": "",
+    "is_negative": true
+  },
+  {
+    "id": "q_neg_03",
+    "question": "What was the main recipe ingredient for medieval Scandinavian mead in the 12th century?",
+    "ground_truth": "The provided corpus does not contain information to answer this question.",
+    "anchor": "",
+    "source": "",
+    "is_negative": true
+  },
+  {
+    "id": "q_neg_04",
+    "question": "Which quantum computing algorithm was used by IBM to achieve quantum supremacy in 2025?",
+    "ground_truth": "The provided corpus does not contain information to answer this question.",
+    "anchor": "",
+    "source": "",
+    "is_negative": true
+  },
+  {
+    "id": "q_neg_05",
+    "question": "What are the official rules for playing underwater rugby in the European Championship?",
+    "ground_truth": "The provided corpus does not contain information to answer this question.",
+    "anchor": "",
+    "source": "",
+    "is_negative": true
+  }
+]

@@ -1,0 +1,197 @@
+[
+  {
+    "id": "q_008",
+    "query": "What was the outcome of the battle of Lake Trasimene?",
+    "expected": [
+      "Punic_Wars_chunk_31"
+    ],
+    "got": [
+      {
+        "chunk_id": "Hannibal_chunk_26",
+        "score": 0.25,
+        "snippet": "Battle of Lake Trasimene\nHannibal quartered his troops for the winter with the Gauls, whose support for him had abated. ..."
+      }
+    ]
+  },
+  {
+    "id": "q_016",
+    "query": "What was the purpose of the Pirs module on the ISS?",
+    "expected": [
+      "International_Space_Station_chunk_66"
+    ],
+    "got": [
+      {
+        "chunk_id": "International_Space_Station_chunk_67",
+        "score": 0.8333,
+        "snippet": "Pirs\nCommander Volkov stands on Pirs with his back to the Soyuz whilst operating the manual Strela crane (which is holdi..."
+      }
+    ]
+  },
+  {
+    "id": "q_025",
+    "query": "What notable entertainment events did Augustus stage in Rome?",
+    "expected": [
+      "Augustus_chunk_103"
+    ],
+    "got": [
+      {
+        "chunk_id": "Roman_Empire_chunk_83",
+        "score": 0.5769,
+        "snippet": "Spectacles\nWhen Juvenal complained that the Roman people had exchanged their political liberty for \"bread and circuses\",..."
+      }
+    ]
+  },
+  {
+    "id": "q_033",
+    "query": "Why were Crispus and Fausta executed?",
+    "expected": [
+      "Constantine_the_Great_chunk_65"
+    ],
+    "got": [
+      {
+        "chunk_id": "Constantine_the_Great_chunk_66",
+        "score": 0.8333,
+        "snippet": "Executions of Crispus and Fausta\n[275] Adrian Goldsworthy speculates an alternative explanation for the execution of Cri..."
+      }
+    ]
+  },
+  {
+    "id": "q_035",
+    "query": "What is the significance of the 2:3 resonance for plutinos like Pluto?",
+    "expected": [
+      "Kuiper_belt_chunk_22"
+    ],
+    "got": [
+      {
+        "chunk_id": "Kuiper_belt_chunk_23",
+        "score": 1.0,
+        "snippet": "Resonances\nof  this  family  are  known  as  plutinos.  Many  plutinos,  including  Pluto,  have  orbits  that  cross  t..."
+      }
+    ]
+  },
+  {
+    "id": "q_044",
+    "query": "What is the formula for escape speed from a celestial body?",
+    "expected": [
+      "Escape_velocity_chunk_3"
+    ],
+    "got": [
+      {
+        "chunk_id": "Escape_velocity_chunk_0",
+        "score": 0.5833,
+        "snippet": "Escape velocity\nIn celestial mechanics, escape velocity or escape speed is  the  minimum speed needed for an object to e..."
+      }
+    ]
+  },
+  {
+    "id": "q_056",
+    "query": "What is the title of the 1947 paper by Clemence?",
+    "expected": [],
+    "got": [
+      {
+        "chunk_id": "Augustus_chunk_54",
+        "score": 0.5,
+        "snippet": "Title of Augustus\nSenate  awarded  him  with  a  golden  shield  displayed  in  the  meeting hall  of  the  Curia,  bear..."
+      }
+    ]
+  },
+  {
+    "id": "q_057",
+    "query": "What was introduced in 2017 that improved NLP models?",
+    "expected": [
+      "Generative_pre-trained_transformer_chunk_2"
+    ],
+    "got": [
+      {
+        "chunk_id": "Generative_pre-trained_transformer_chunk_3",
+        "score": 0.5833,
+        "snippet": "History\nOn  June  11,  2018,  OpenAI  researchers  and  engineers  published  a  paper  called  \"Improving  Language Und..."
+      }
+    ]
+  },
+  {
+    "id": "q_059",
+    "query": "What algorithm is commonly used to minimize error in neural networks?",
+    "expected": [
+      "Backpropagation_chunk_14"
+    ],
+    "got": [
+      {
+        "chunk_id": "Recurrent_neural_network_chunk_21",
+        "score": 0.5,
+        "snippet": "Gradient descent\nGradient descent is a first-order iterative optimization algorithm for finding the minimum of a functio..."
+      }
+    ]
+  },
+  {
+    "id": "q_060",
+    "query": "What is a neutron star and how is it formed?",
+    "expected": [
+      "Neutron_star_chunk_0"
+    ],
+    "got": [
+      {
+        "chunk_id": "Neutron_star_chunk_4",
+        "score": 0.4583,
+        "snippet": "Formation\nAs  the  core  of  a  massive  star  is  compressed  during  a  Type  II  supernova  or  a  Type  Ib  or  Type..."
+      }
+    ]
+  },
+  {
+    "id": "q_063",
+    "query": "What significant event occurred in 221 BC involving Hannibal?",
+    "expected": [
+      "Hannibal_chunk_11",
+      "Hannibal_chunk_76"
+    ],
+    "got": [
+      {
+        "chunk_id": "Hannibal_chunk_37",
+        "score": 0.1,
+        "snippet": "Battle of Cannae\nhad  received  proper  material  reinforcements  from  Carthage,  he  might  have  succeeded  with  a  ..."
+      }
+    ]
+  },
+  {
+    "id": "q_066",
+    "query": "How does gradient boosting improve its predictions?",
+    "expected": [
+      "Gradient_boosting_chunk_3"
+    ],
+    "got": [
+      {
+        "chunk_id": "Gradient_boosting_chunk_0",
+        "score": 0.5,
+        "snippet": "Gradient boosting\nGradient boosting is  a  machine  learning  technique  based  on  boosting  in  a  functional  space, ..."
+      }
+    ]
+  },
+  {
+    "id": "q_083",
+    "query": "What type of planetary system is the Solar System classified as?",
+    "expected": [
+      "Solar_System_chunk_27"
+    ],
+    "got": [
+      {
+        "chunk_id": "Solar_System_chunk_0",
+        "score": 0.6429,
+        "snippet": "Solar System\nThe Solar  System is  the  gravitationally  bound system  of  the  Sun  and  the  masses  that  orbit  it, ..."
+      }
+    ]
+  },
+  {
+    "id": "q_086",
+    "query": "What is the release timeframe for Windows 11 version 26H2?",
+    "expected": [
+      "Windows_11_chunk_40"
+    ],
+    "got": [
+      {
+        "chunk_id": "Windows_11_chunk_6",
+        "score": 0.3214,
+        "snippet": "Windows 11\n[plate:Latest_stable_soft ware_release/Windows_ 11&action=edit)](https://en.wikipedia.org/w/index.php?title=T..."
+      }
+    ]
+  }
+]
