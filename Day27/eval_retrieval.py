@@ -137,7 +137,7 @@ def evaluate_retrieval(collection_name, golden_set, type, top_k):
                          f"(проверь {expected_key} в golden set)")
 
     # сохраняем miss-лог (даже пустой — пустой лог тоже информация: «промахов нет»)
-    log_path = f"miss_{collection_name}_{type}_k{top_k}.json"
+    log_path =DATA_DIR / f"miss_{collection_name}_{type}_k{top_k}.json"
     with open(log_path, "w", encoding="utf-8") as f:
         json.dump(misses, f, ensure_ascii=False, indent=2)
 
