@@ -1,0 +1,12 @@
+День 30 — Первый tool call: песочницы и минимальный код (~2 ч)
+Источники:
+OpenAI Playground (генерация и обкатка схем): https://platform.openai.com/playground
+Anthropic Console / Playground: https://console.anthropic.com/
+Anthropic: How tool use works: https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works
+Что сделать:
+В OpenAI Playground определить function-схему get_weather(city), посмотреть, как модель запрашивает вызов и какой JSON возвращает
+То же в Anthropic Console: увидеть блоки tool_use и tool_result, сравнить форматы двух провайдеров
+Прочитать у Anthropic про client tools vs server tools (web_search исполняет их инфраструктура, ваши функции — ваш код)
+В коде (OpenAI или Anthropic SDK) реализовать один инструмент: схема → отправка tools → разбор ответа → исполнение локальной функции → возврат результата → финальный ответ
+Убедиться руками, что без возврата результата в диалог модель не знает ответа
+Контрольная точка: скрипт из ~50 строк прогоняет полный цикл tool use; вы видите сырой JSON вызова и понимаете каждое поле.
