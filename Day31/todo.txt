@@ -1,0 +1,14 @@
+День 31 — Agentic loop, параллельные вызовы и обработка ошибок (~2.5 ч)
+Источники:
+OpenAI Function calling guide — раздел «Handling function calls» (эталонный код цикла на Responses API): https://developers.openai.com/api/docs/guides/function-calling
+Anthropic: Define tools (tool_choice): https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
+OpenAI Function Calling — Full Guide (Stackademic): https://blog.stackademic.com/openai-function-calling-full-guide-75d9e14db3de
+Что сделать:
+Разобрать эталонный цикл из официального гайда: input_messages += response.output → разбор function_call → call_function (роутер по имени) → function_call_output с call_id → повторный запрос. Каждое сообщение результата ссылается на конкретный вызов через call_id — без этого сопоставления модель не поймёт, какой результат к какому вызову относится
+Собрать тот же цикл на своей задаче (например, инструмент-запрос к SQLite по аналогии с классическим SQL-примером): 2 таблицы, 5–7 строк данных, модель отвечает на вопросы через инструмент
+Переписать свой вчерашний скрипт на цикл while: модель может запросить несколько вызовов подряд, пока не решит задачу (у Anthropic — по stop_reason == "tool_use")
+Дать модели 2 инструмента и запрос, требующий обоих сразу — наблюдать parallel tool calls; отключить через parallel_tool_calls=false и сравнить
+Выписать правила, когда параллелизм вреден: зависимые вызовы (сначала customer_id, потом заказы), strict mode, деструктивные действия
+Смоделировать ошибку исполнения (функция бросает исключение) → вернуть текст ошибки как tool-сообщение → посмотреть, как модель корректирует аргументы или честно признаёт проблему
+Поиграть с tool_choice: auto / required / принудительный выбор конкретной функции / none (у Anthropic: auto / any / tool / none)
+Контрольная точка: агентный цикл работает с 2+ инструментами, ошибки не роняют программу, а возвращаются модели; можете объяснить, почему заморозку карты нельзя делать параллельным вызовом.
