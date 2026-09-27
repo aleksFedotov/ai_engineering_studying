@@ -30,14 +30,18 @@ openai_tools = [
     {
     "type": "function", 
     "name": "query_sql",
-    "description": "Executes read-only SQL SELECT queries against the local SQLite database containing 'customers'"
-                    "and 'orders' tables. Use this tool to retrieve customer profile details or order details using standard SQL queries."
-                    " Only SELECT queries are permitted; data modification or schema alterations will result in an error. "
-                    "Always limit the results using a LIMIT clause or specific filters to ensure concise outputs."
-                    " Database schema: customers(customer_id INTEGER PK, name TEXT, city TEXT, registered TEXT); "
-                    "orders(order_id INTEGER PK, customer_id INTEGER FK → customers, product TEXT,amount REAL, "
-                    "status TEXT ['delivered','shipped','cancelled','processing'], created_at TEXT)."
-                    "Note: orders with status 'cancelled' represent refunded/cancelled purchases — exclude them when computing spending",
+    "description": (
+        "Executes a read-only SQL SELECT query against a local SQLite database with exactly two tables: "
+        "customers(customer_id INTEGER PK, name TEXT, city TEXT, registered TEXT) and "
+        "orders(order_id INTEGER PK, customer_id INTEGER REFERENCES customers.customer_id, "
+        "product TEXT, amount REAL, status TEXT ['delivered','shipped','cancelled','processing'], created_at TEXT). "
+        "Dates are ISO strings ('YYYY-MM-DD'). JOINs and subqueries are allowed; only SELECT is permitted — "
+        "any data modification or DDL returns an error string 'ERROR: only SELECT queries are allowed'. "
+        "Results are returned as a JSON array of row objects, capped at 50 rows even without LIMIT. "
+        "IMPORTANT: orders with status 'cancelled' are refunded purchases — exclude them when computing spending. "
+        "WHEN NOT TO USE: to look up one customer's profile by exact name, prefer get_customer_profile — "
+        "it is simpler and less error-prone than writing SQL."
+    ),
     "parameters": {
         "type": "object",
         "properties": {
@@ -54,10 +58,14 @@ openai_tools = [
     {
     "type": "function",
     "name": "get_customer_profile",
-    "description": "Retrieves the profile details of a single customer from the read-only SQLite database by their exact name. "
-            "Use this tool to quickly look up a customer's basic information (customer_id, name, city, registered) without writing raw SQL. "
-            "This is especially useful for finding a 'customer_id' to use as a foreign key in subsequent order queries. Note: The search requires an exact text match for the name."
-            "Do NOT use this tool for order queries, aggregations, or listing multiple customers — use query_sql instead.",
+    "description": (
+        "Looks up ONE customer by exact name (case-sensitive) and returns their profile "
+        "(customer_id, name, city, registered) as a JSON object. "
+        "If several customers share the name, returns all matches as a JSON array — inspect city/registered to disambiguate. "
+        "If no match, returns the string 'customer not found' — check spelling or fall back to query_sql with LIKE. "
+        "Typical use: finding a customer_id for subsequent order queries via query_sql. "
+        "WHEN NOT TO USE: for order queries, aggregations, fuzzy search, or listing multiple customers — use query_sql instead."
+    ),
     "parameters": {
         "type": "object",
         "properties": {
