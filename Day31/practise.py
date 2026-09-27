@@ -35,16 +35,22 @@ openai_tools = [
     "type": "function", 
     "name": "query_sql",
     "description": (
+  
         "Executes a read-only SQL SELECT query against a local SQLite database with exactly two tables: "
         "customers(customer_id INTEGER PK, name TEXT, city TEXT, registered TEXT) and "
         "orders(order_id INTEGER PK, customer_id INTEGER REFERENCES customers.customer_id, "
         "product TEXT, amount REAL, status TEXT ['delivered','shipped','cancelled','processing'], created_at TEXT). "
-        "Dates are ISO strings ('YYYY-MM-DD'). JOINs and subqueries are allowed; only SELECT is permitted — "
-        "any data modification or DDL returns an error string 'ERROR: only SELECT queries are allowed'. "
-        "Results are returned as a JSON array of row objects, capped at 50 rows even without LIMIT. "
+        "Dates are ISO strings ('YYYY-MM-DD'). JOINs and subqueries are allowed. "
+   
         "IMPORTANT: orders with status 'cancelled' are refunded purchases — exclude them when computing spending. "
+  
         "WHEN NOT TO USE: to look up one customer's profile by exact name, prefer get_customer_profile — "
-        "it is simpler and less error-prone than writing SQL."
+        "it is simpler and less error-prone than writing SQL. "
+  
+        "Results: JSON object {status, rows_count, truncated, data: [...]}. "
+        "If the query has no LIMIT clause, at most 5 rows are returned and truncated=true signals more rows exist — "
+        "add an explicit LIMIT to fetch more. "
+        "Non-SELECT queries return {\"error\": \"SecurityError: ...\"}; only tables customers and orders are accessible."
     ),
     "parameters": {
         "type": "object",
@@ -63,11 +69,15 @@ openai_tools = [
     "type": "function",
     "name": "get_customer_profile",
     "description": (
-        "Looks up ONE customer by exact name (case-sensitive) and returns their profile "
-        "(customer_id, name, city, registered) as a JSON object. "
-        "If several customers share the name, returns all matches as a JSON array — inspect city/registered to disambiguate. "
-        "If no match, returns the string 'customer not found' — check spelling or fall back to query_sql with LIKE. "
+      
+        "Looks up ONE customer by exact name (case-sensitive). "
+
+        "Returns their profile (customer_id, name, city, registered) as a JSON object; at most ONE customer "
+        "(the first match). If no match, returns {\"error\": \"Клиент с именем '<name>' не найден\"} — "
+        "check spelling or use query_sql with LIKE. "
+   
         "Typical use: finding a customer_id for subsequent order queries via query_sql. "
+
         "WHEN NOT TO USE: for order queries, aggregations, fuzzy search, or listing multiple customers — use query_sql instead."
     ),
     "parameters": {
@@ -144,17 +154,16 @@ def get_customer_profile(name: str) -> Dict[str, Any]:
     conn = sqlite3.connect(f"file:{DB_PATH}?mode=ro", uri=True)
     try:
         cursor = conn.execute(
-            "SELECT customer_id, name, city, registered FROM customers WHERE name = ? LIMIT 1",
+            "SELECT customer_id, name, city, registered FROM customers WHERE name = ?",
             (name,),
         )
-        row = cursor.fetchone()
-        if row is None:
+        rows = cursor.fetchall()
+        if not rows:  # пустой список — клиент не найден
             return {"error": f"Клиент с именем '{name}' не найден. Проверь написание."}
         return {"status": "success", "data": dict(zip(
-            ["customer_id", "name", "city", "registered"], row))}
+            ["customer_id", "name", "city", "registered"], rows[0]))}
     finally:
         conn.close()
-
 
 ROUTER  = {
     "query_sql" : query_sql,

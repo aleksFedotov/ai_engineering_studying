@@ -1,0 +1,976 @@
+[
+  {
+    "question": "Сколько заказов у Анны и что она купила?",
+    "tools_used": [
+      "get_customer_profile",
+      "query_sql"
+    ],
+    "n_calls": 2,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "Анна имеет 3 заказа и приобрела следующие товары: **Клавиатура, Мышь, Монитор**.",
+    "elapsed_s": 5.64,
+    "trace": [
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Анна\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 1,
+            "name": "Анна",
+            "city": "Москва",
+            "registered": "2025-01-15"
+          }
+        }
+      },
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT COUNT(order_id) AS total_orders, GROUP_CONCAT(product) AS products FROM orders WHERE customer_id = 1 AND status != 'cancelled'\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "total_orders": 3,
+              "products": "Клавиатура,Мышь,Монитор"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "question": "Сколько заказов у Анны и что она купила?",
+    "tools_used": [
+      "get_customer_profile",
+      "query_sql"
+    ],
+    "n_calls": 2,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "У Анны три заказа:\n\n1. **Клавиатура** - 4500.0 RUB (доставлено)\n2. **Мышь** - 1500.0 RUB (доставлено)\n3. **Монитор** - 22000.0 RUB (отправлено)\n\nЕсли вам нужна дополнительная информация по каким-либо заказам, просто дайте знать!",
+    "elapsed_s": 4.19,
+    "trace": [
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Анна\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 1,
+            "name": "Анна",
+            "city": "Москва",
+            "registered": "2025-01-15"
+          }
+        }
+      },
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT * FROM orders WHERE customer_id = 1 AND status <> 'cancelled'\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 3,
+          "truncated": false,
+          "data": [
+            {
+              "order_id": 1,
+              "customer_id": 1,
+              "product": "Клавиатура",
+              "amount": 4500.0,
+              "status": "delivered",
+              "created_at": "2025-07-01"
+            },
+            {
+              "order_id": 2,
+              "customer_id": 1,
+              "product": "Мышь",
+              "amount": 1500.0,
+              "status": "delivered",
+              "created_at": "2025-07-20"
+            },
+            {
+              "order_id": 3,
+              "customer_id": 1,
+              "product": "Монитор",
+              "amount": 22000.0,
+              "status": "shipped",
+              "created_at": "2025-08-05"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "question": "Сколько заказов у Анны и что она купила?",
+    "tools_used": [
+      "get_customer_profile",
+      "query_sql"
+    ],
+    "n_calls": 2,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "У Анны есть 3 заказа, которые она приобрела: Клавиатура, Мышь и Монитор.",
+    "elapsed_s": 3.7,
+    "trace": [
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Анна\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 1,
+            "name": "Анна",
+            "city": "Москва",
+            "registered": "2025-01-15"
+          }
+        }
+      },
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT COUNT(*) AS orders_count, GROUP_CONCAT(product) AS products FROM orders WHERE customer_id = 1 AND status != 'cancelled'\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "orders_count": 3,
+              "products": "Клавиатура,Мышь,Монитор"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "question": "Какие заказы у Ольги?",
+    "tools_used": [
+      "get_customer_profile",
+      "query_sql"
+    ],
+    "n_calls": 2,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "У Ольги нет заказов в базе данных.",
+    "elapsed_s": 4.6,
+    "trace": [
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Ольга\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 5,
+            "name": "Ольга",
+            "city": "Новосибирск",
+            "registered": "2025-05-30"
+          }
+        }
+      },
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT * FROM orders WHERE customer_id = 5 LIMIT 5\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 0,
+          "truncated": false,
+          "data": []
+        }
+      }
+    ]
+  },
+  {
+    "question": "Какие заказы у Ольги?",
+    "tools_used": [
+      "get_customer_profile",
+      "query_sql"
+    ],
+    "n_calls": 2,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "У Ольги нет заказов в базе данных.",
+    "elapsed_s": 3.51,
+    "trace": [
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Ольга\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 5,
+            "name": "Ольга",
+            "city": "Новосибирск",
+            "registered": "2025-05-30"
+          }
+        }
+      },
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT * FROM orders WHERE customer_id = 5 LIMIT 5\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 0,
+          "truncated": false,
+          "data": []
+        }
+      }
+    ]
+  },
+  {
+    "question": "Какие заказы у Ольги?",
+    "tools_used": [
+      "get_customer_profile",
+      "query_sql"
+    ],
+    "n_calls": 2,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": false,
+    "final_text": "У Ольги нет активных заказов (всех её заказов статусы 'отменён' или отсутствуют). Если вам нужна дополнительная информация, дайте знать!",
+    "elapsed_s": 3.38,
+    "trace": [
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Ольга\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 5,
+            "name": "Ольга",
+            "city": "Новосибирск",
+            "registered": "2025-05-30"
+          }
+        }
+      },
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT * FROM orders WHERE customer_id = 5 AND status != 'cancelled'\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 0,
+          "truncated": false,
+          "data": []
+        }
+      }
+    ]
+  },
+  {
+    "question": "Сколько потратила Мария?",
+    "tools_used": [
+      "get_customer_profile",
+      "query_sql"
+    ],
+    "n_calls": 2,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "Мария не потратила денег на заказы, так как у неё нет записей о покупках, кроме оплаченных.",
+    "elapsed_s": 3.68,
+    "trace": [
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Мария\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 3,
+            "name": "Мария",
+            "city": "Москва",
+            "registered": "2025-03-21"
+          }
+        }
+      },
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT SUM(amount) AS total_spent FROM orders WHERE customer_id = 3 AND status != 'cancelled'\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "total_spent": null
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "question": "Сколько потратила Мария?",
+    "tools_used": [
+      "get_customer_profile",
+      "query_sql"
+    ],
+    "n_calls": 2,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": false,
+    "final_text": "Мария не совершила покупок, так как сумма её расходов равна нулю.",
+    "elapsed_s": 4.44,
+    "trace": [
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Мария\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 3,
+            "name": "Мария",
+            "city": "Москва",
+            "registered": "2025-03-21"
+          }
+        }
+      },
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT SUM(amount) as total_spending FROM orders WHERE customer_id = 3 AND status != 'cancelled'\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "total_spending": null
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "question": "Сколько потратила Мария?",
+    "tools_used": [
+      "get_customer_profile",
+      "query_sql"
+    ],
+    "n_calls": 2,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "Мария не сделала ни одной покупки, так что её общие расходы составляют 0.",
+    "elapsed_s": 3.46,
+    "trace": [
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Мария\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 3,
+            "name": "Мария",
+            "city": "Москва",
+            "registered": "2025-03-21"
+          }
+        }
+      },
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT SUM(amount) AS total_spent FROM orders WHERE customer_id = 3 AND status != 'cancelled'\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "total_spent": null
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "question": "У кого больше заказов — у Анны или у Ивана?",
+    "tools_used": [
+      "get_customer_profile",
+      "get_customer_profile",
+      "query_sql",
+      "query_sql"
+    ],
+    "n_calls": 4,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "У Анны больше заказов — 3 заказа, в то время как у Ивана только 1 заказ.",
+    "elapsed_s": 5.47,
+    "trace": [
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Анна\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 1,
+            "name": "Анна",
+            "city": "Москва",
+            "registered": "2025-01-15"
+          }
+        }
+      },
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Иван\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 2,
+            "name": "Иван",
+            "city": "Санкт-Петербург",
+            "registered": "2025-02-03"
+          }
+        }
+      },
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT COUNT(*) AS order_count FROM orders WHERE customer_id = 1 AND status != 'cancelled'\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "order_count": 3
+            }
+          ]
+        }
+      },
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT COUNT(*) AS order_count FROM orders WHERE customer_id = 2 AND status != 'cancelled'\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "order_count": 1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "question": "У кого больше заказов — у Анны или у Ивана?",
+    "tools_used": [
+      "get_customer_profile",
+      "get_customer_profile",
+      "query_sql",
+      "query_sql"
+    ],
+    "n_calls": 4,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "У Анны больше заказов (3 заказа) по сравнению с Иваном (1 заказ).",
+    "elapsed_s": 5.47,
+    "trace": [
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Анна\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 1,
+            "name": "Анна",
+            "city": "Москва",
+            "registered": "2025-01-15"
+          }
+        }
+      },
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Иван\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 2,
+            "name": "Иван",
+            "city": "Санкт-Петербург",
+            "registered": "2025-02-03"
+          }
+        }
+      },
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT COUNT(*) AS order_count FROM orders WHERE customer_id = 1 AND status != 'cancelled'\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "order_count": 3
+            }
+          ]
+        }
+      },
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT COUNT(*) AS order_count FROM orders WHERE customer_id = 2 AND status != 'cancelled'\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "order_count": 1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "question": "У кого больше заказов — у Анны или у Ивана?",
+    "tools_used": [
+      "get_customer_profile",
+      "get_customer_profile",
+      "query_sql",
+      "query_sql"
+    ],
+    "n_calls": 4,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "У Анны 3 заказа, а у Ивана — 1 заказ. Таким образом, у Анны больше заказов.",
+    "elapsed_s": 5.56,
+    "trace": [
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Анна\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 1,
+            "name": "Анна",
+            "city": "Москва",
+            "registered": "2025-01-15"
+          }
+        }
+      },
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Иван\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 2,
+            "name": "Иван",
+            "city": "Санкт-Петербург",
+            "registered": "2025-02-03"
+          }
+        }
+      },
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT COUNT(*) AS order_count FROM orders WHERE customer_id = 1 AND status != 'cancelled'\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "order_count": 3
+            }
+          ]
+        }
+      },
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT COUNT(*) AS order_count FROM orders WHERE customer_id = 2 AND status != 'cancelled'\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "order_count": 1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "question": "Покажи заказы клиента, который купил наушники",
+    "tools_used": [
+      "query_sql"
+    ],
+    "n_calls": 1,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "На данный момент нет заказов наушников от клиентов. Если у вас есть дополнительные вопросы или другой запрос, дайте знать!",
+    "elapsed_s": 2.3,
+    "trace": [
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT orders.* FROM orders JOIN customers ON orders.customer_id = customers.customer_id WHERE orders.product = 'наушники' AND orders.status != 'cancelled'\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 0,
+          "truncated": false,
+          "data": []
+        }
+      }
+    ]
+  },
+  {
+    "question": "Покажи заказы клиента, который купил наушники",
+    "tools_used": [
+      "query_sql"
+    ],
+    "n_calls": 1,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "Не найдено заказов клиента, который купил наушники. Возможно, такие заказы отсутствуют или все были отменены. Если нужна дополнительная информация, дайте знать!",
+    "elapsed_s": 2.52,
+    "trace": [
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT o.order_id, o.product, o.amount, o.status, o.created_at FROM orders o JOIN customers c ON o.customer_id = c.customer_id WHERE o.product = 'наушники' AND o.status != 'cancelled'\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 0,
+          "truncated": false,
+          "data": []
+        }
+      }
+    ]
+  },
+  {
+    "question": "Покажи заказы клиента, который купил наушники",
+    "tools_used": [
+      "query_sql"
+    ],
+    "n_calls": 1,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "К сожалению, нет заказов клиента, который купил наушники и не отменил их. Если у вас есть другие запросы или уточнения, дайте знать!",
+    "elapsed_s": 2.78,
+    "trace": [
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT o.* FROM orders o JOIN customers c ON o.customer_id = c.customer_id WHERE o.product = 'наушники' AND o.status != 'cancelled' LIMIT 5\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 0,
+          "truncated": false,
+          "data": []
+        }
+      }
+    ]
+  },
+  {
+    "question": "Сколько всего оплат в таблице payments",
+    "tools_used": [],
+    "n_calls": 0,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "Похоже, что в доступной мне базе данных нет таблицы с названием \"payments\". Вы можете уточнить свой запрос или указать другую таблицу, с которой нужно работать? В данный момент доступны только таблицы \"customers\" и \"orders\".",
+    "elapsed_s": 1.18,
+    "trace": []
+  },
+  {
+    "question": "Сколько всего оплат в таблице payments",
+    "tools_used": [],
+    "n_calls": 0,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "В данной базе данных нет таблицы с именем \"payments\". Есть только таблицы \"customers\" и \"orders\". Если вам нужна информация из этих таблиц, пожалуйста, уточните, что именно вы хотите узнать.",
+    "elapsed_s": 1.78,
+    "trace": []
+  },
+  {
+    "question": "Сколько всего оплат в таблице payments",
+    "tools_used": [],
+    "n_calls": 0,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "В вашем запросе упоминается таблица \"payments\", но в доступных мне данных есть только таблицы \"customers\" и \"orders\". Если вам нужна информация по этим таблицам, пожалуйста, уточните запрос.",
+    "elapsed_s": 1.33,
+    "trace": []
+  },
+  {
+    "question": "Покажи профиль клиента с customer_id = 2",
+    "tools_used": [
+      "query_sql"
+    ],
+    "n_calls": 1,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "Профиль клиента с customer_id = 2:\n\n- **Имя:** Иван\n- **Город:** Санкт-Петербург\n- **Дата регистрации:** 2025-02-03",
+    "elapsed_s": 2.32,
+    "trace": [
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT * FROM customers WHERE customer_id = 2\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "customer_id": 2,
+              "name": "Иван",
+              "city": "Санкт-Петербург",
+              "registered": "2025-02-03"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "question": "Покажи профиль клиента с customer_id = 2",
+    "tools_used": [
+      "query_sql"
+    ],
+    "n_calls": 1,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "Профиль клиента с customer_id = 2:\n\n- **Имя:** Иван\n- **Город:** Санкт-Петербург\n- **Дата регистрации:** 2025-02-03",
+    "elapsed_s": 2.25,
+    "trace": [
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT * FROM customers WHERE customer_id = 2 LIMIT 5\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "customer_id": 2,
+              "name": "Иван",
+              "city": "Санкт-Петербург",
+              "registered": "2025-02-03"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "question": "Покажи профиль клиента с customer_id = 2",
+    "tools_used": [
+      "query_sql"
+    ],
+    "n_calls": 1,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "Профиль клиента с customer_id = 2:\n\n- **Имя**: Иван\n- **Город**: Санкт-Петербург\n- **Дата регистрации**: 2025-02-03",
+    "elapsed_s": 2.31,
+    "trace": [
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT * FROM customers WHERE customer_id = 2\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "customer_id": 2,
+              "name": "Иван",
+              "city": "Санкт-Петербург",
+              "registered": "2025-02-03"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "question": "Найди клиента, имя начинается на 'Ол'",
+    "tools_used": [
+      "query_sql"
+    ],
+    "n_calls": 1,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "Клиент с именем, начинающимся на 'Ол':\n\n- **Имя:** Ольга\n- **Город:** Новосибирск\n- **Дата регистрации:** 2025-05-30\n- **ID клиента:** 5",
+    "elapsed_s": 2.56,
+    "trace": [
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT * FROM customers WHERE name LIKE 'Ол%'\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "customer_id": 5,
+              "name": "Ольга",
+              "city": "Новосибирск",
+              "registered": "2025-05-30"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "question": "Найди клиента, имя начинается на 'Ол'",
+    "tools_used": [
+      "query_sql"
+    ],
+    "n_calls": 1,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "Клиент, чье имя начинается на 'Ол': \n\n- **Имя:** Ольга\n- **Город:** Новосибирск\n- **Дата регистрации:** 30 мая 2025 года\n\nЕсли нужно что-то еще, дайте знать!",
+    "elapsed_s": 2.98,
+    "trace": [
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT * FROM customers WHERE name LIKE 'Ол%' LIMIT 5\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "customer_id": 5,
+              "name": "Ольга",
+              "city": "Новосибирск",
+              "registered": "2025-05-30"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "question": "Найди клиента, имя начинается на 'Ол'",
+    "tools_used": [
+      "query_sql"
+    ],
+    "n_calls": 1,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "Клиент, имя которого начинается на \"Ол\":\n\n- **Имя:** Ольга\n- **Город:** Новосибирск\n- **Дата регистрации:** 30 мая 2025 года\n- **ID клиента:** 5",
+    "elapsed_s": 2.4,
+    "trace": [
+      {
+        "name": "query_sql",
+        "args": "{\"query\":\"SELECT * FROM customers WHERE name LIKE 'Ол%' LIMIT 5\"}",
+        "result": {
+          "status": "success",
+          "rows_count": 1,
+          "truncated": false,
+          "data": [
+            {
+              "customer_id": 5,
+              "name": "Ольга",
+              "city": "Новосибирск",
+              "registered": "2025-05-30"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "question": "Есть ли клиент по имени Анна?",
+    "tools_used": [
+      "get_customer_profile"
+    ],
+    "n_calls": 1,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "Да, клиент по имени Анна есть. Вот ее профиль:\n\n- **ID клиента:** 1\n- **Имя:** Анна\n- **Город:** Москва\n- **Дата регистрации:** 2025-01-15",
+    "elapsed_s": 2.66,
+    "trace": [
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Анна\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 1,
+            "name": "Анна",
+            "city": "Москва",
+            "registered": "2025-01-15"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "question": "Есть ли клиент по имени Анна?",
+    "tools_used": [
+      "get_customer_profile"
+    ],
+    "n_calls": 1,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "Да, клиент по имени Анна есть. Вот ее профиль:\n\n- **ID клиента**: 1\n- **Имя**: Анна\n- **Город**: Москва\n- **Дата регистрации**: 15 января 2025 года",
+    "elapsed_s": 2.37,
+    "trace": [
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Анна\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 1,
+            "name": "Анна",
+            "city": "Москва",
+            "registered": "2025-01-15"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "question": "Есть ли клиент по имени Анна?",
+    "tools_used": [
+      "get_customer_profile"
+    ],
+    "n_calls": 1,
+    "tool_errors": 0,
+    "selection_ok": true,
+    "answer_ok": true,
+    "final_text": "Да, есть клиент по имени Анна. Вот её профиль:\n\n- **ID клиента**: 1\n- **Город**: Москва\n- **Дата регистрации**: 15 января 2025 года",
+    "elapsed_s": 2.4,
+    "trace": [
+      {
+        "name": "get_customer_profile",
+        "args": "{\"name\":\"Анна\"}",
+        "result": {
+          "status": "success",
+          "data": {
+            "customer_id": 1,
+            "name": "Анна",
+            "city": "Москва",
+            "registered": "2025-01-15"
+          }
+        }
+      }
+    ]
+  }
+]
