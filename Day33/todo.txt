@@ -1,0 +1,12 @@
+День 33 — Structured Outputs: гарантии схемы и ограничения (~2 ч)
+Источники:
+OpenAI: Structured model outputs: https://developers.openai.com/api/docs/guides/structured-outputs
+Microsoft Learn — Structured outputs (примеры с Pydantic): https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/structured-outputs
+Что сделать:
+Разобрать разницу: JSON mode гарантирует только валидный JSON, Structured Outputs — соответствие вашей схеме (grammar-constrained decoding: токены, нарушающие схему, обнуляются при генерации)
+Передать Pydantic-модель через responses.parse и получить типизированный объект в output_parsed — без ручного json.loads
+Выписать правила strict-схемы: все поля в required, additionalProperties: false, опциональность через ["string", "null"]
+Проверить на практике ограничения: pattern/minLength не принуждаются схемой — валидировать в коде
+Обработать три краевых случая по шаблону из гайда: refusal модели, обрыв по max_output_tokens, контент-фильтр
+Записать в конспект капкан JSON mode: без слова «JSON» в сообщениях модель может генерировать бесконечные пробелы до исчерпания лимита
+Контрольная точка: модель возвращает ответ строго по вашей Pydantic-модели со 100% валидностью формы; знаете, что схема гарантирует, а что нет.
