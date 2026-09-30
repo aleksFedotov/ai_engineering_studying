@@ -1,0 +1,13 @@
+День 34 — Instructor: валидация и авторетраи; когда что выбирать (~2.5 ч)
+Источники:
+DeepLearning.AI: Pydantic for LLM Workflows (1 ч 50 мин): https://www.deeplearning.ai/courses/pydantic-for-llm-workflows
+Instructor docs: https://python.useinstructor.com/
+Structured Outputs vs Function Calling (Machine Learning Mastery): https://machinelearningmastery.com/structured-outputs-vs-function-calling-which-should-your-agent-use/
+Что сделать:
+Пройти курс «Pydantic for LLM Workflows»: как современные SDK используют Pydantic под капотом для structured outputs и tool calling
+Поставить instructor, описать ответ как BaseModel, увидеть авторетрай: модель вернула невалидное → библиотека переспрашивает с текстом ошибки валидации (max_retries=3)
+Написать кастомный валидатор Pydantic (например, «поле дата не в прошлом») и убедиться, что ретрай учитывает его
+Прочитать сравнительную статью и выписать дерево решений: structured output — про форму данных (экстракция, строгие ответы); function calling — про поток управления (нужны внешние данные или действие в середине рассуждения)
+Выписать экономику: function calling = несколько round-trip'ов (дороже, медленнее, статистически непредсказуем); strict structured output = один вызов, почти 100% верность формы
+Понять гибридный паттерн: оркестратор на function calling, финальный ответ пользователю — отдельным вызовом со strict structured output
+Контрольная точка: можете для новой задачи обоснованно сказать «здесь хватит structured output, а здесь нужен function calling» и назвать критерий выбора (форма данных vs поток управления).
