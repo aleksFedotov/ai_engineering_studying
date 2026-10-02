@@ -1,0 +1,13 @@
+День 36 — Зачем нужны evals: от vibe check к измерению (~2 ч)
+Источники:
+Hamel Husain — Your AI Product Needs Evals: https://hamel.dev/blog/posts/evals/
+OpenAI: Evaluation best practices: https://developers.openai.com/api/docs/guides/evaluation-best-practices
+Anthropic: Demystifying Evals for AI Agents: https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents
+Что сделать:
+Прочитать эссе Husain: корневая причина неуспешных LLM-продуктов — отсутствие системы оценки; «посмотрел глазами» не отвечает на вопрос «стало лучше или хуже?»
+Выписать анти-паттерны из гайда OpenAI: vibe-based evals, «напишем evals перед релизом»; и альтернативу — eval-driven development (оценивать рано и часто, логировать всё)
+Выписать 5-шаговый процесс: цель → датасет (логи, экспертная разметка, синтетика) → метрики → прогон и сравнение → непрерывная оценка
+Из статьи Anthropic: почему evals тем труднее, чем дольше ждёшь; разница outcome vs trajectory оценки для агентов; метрики pass@k / pass^k
+Записать в конспект: один и тот же промпт выдаёт разный текст при каждом запуске, поэтому проверяют свойства выхода на наборе входов, а не точное совпадение на 2–3 примерах
+Контрольная точка: можете за 2 минуты убедить вымышленного коллегу, что «и так видно, что работает» — не стратегия, и назвать, что предлагаете вместо.
+
