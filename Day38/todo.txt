@@ -1,0 +1,12 @@
+День 38 — Метрики RAG: RAGAS на живом проекте (~2.5 ч)
+Источники:
+RAGAS docs: https://docs.ragas.io/en/stable/
+Ragas — Complete RAG Metrics Tutorial (QASkills): https://qaskills.sh/blog/ragas-llm-evaluation-guide
+How to Evaluate RAG Systems (Atlan): https://atlan.com/know/how-to-evaluate-rag-systems-explained/
+Что сделать:
+Выписать определения четырёх метрик и что каждая диагностирует: faithfulness и answer relevancy — генерация (reference-free), context precision и context recall — ретрив
+Прогнать RAGAS на вчерашнем наборе: faithfulness + answer relevancy на всех примерах, context recall + answer correctness там, где есть golden answers
+Поиграть диагностическими комбинациями: высокий precision + низкий recall → увеличить top-k или размер чанка; низкий precision + высокий recall → чинить реранкинг; оба низкие → пересматривать эмбеддинги
+Разобрать контринтуитивное: faithfulness 0.95 НЕ означает правильность — если извлечённый контент неверен, ответ «верен контексту», но неверен по факту; пара «высокий faithfulness + низкий correctness» = пробел ретрива
+Эксперимент: изменить размер чанка (512 → 256) → перепрогнать метрики → записать дельту — как в дне 27, но теперь измеряется и генерация
+Контрольная точка: каждая метрика интерпретируется как диагноз компонента; вы можете по таблице чисел сказать, что менять: чанкинг, реранкинг или промпт.

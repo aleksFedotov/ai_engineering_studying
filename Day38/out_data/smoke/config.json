@@ -1,0 +1,8 @@
+{
+  "dataset": "D:\\Coding\\newAccount\\ai_engineering\\Studying\\Day37\\out_data\\eval_set_draft.jsonl",
+  "collection": "week_4_project",
+  "chunks": "D:\\Coding\\newAccount\\ai_engineering\\Studying\\Day28\\data\\chunks_512.jsonl",
+  "model": "gpt-4.1-mini",
+  "limit": 2,
+  "context_chars_per_hit": 800
+}

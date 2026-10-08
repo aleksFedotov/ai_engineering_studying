@@ -1,0 +1,38 @@
+﻿case_id,question,error,faithfulness,answer_relevancy,context_precision,context_recall,answer_correctness
+0,How do quantum activation functions work in quantum neural networks?,,0.875,0.8230194725584413,,1.0,0.8348476685942317
+1,What activation function was used in the 2012 speech recognition model developed by Hinton et al.?,,1.0,0.9999995770102221,,1.0,0.9985342533809045
+2,How does the attention mechanism in machine learning improve the processing of sequences in natural language processing compared to traditional recurrent neural networks?,no_answer,,,,,
+3,What Augustus do for Theatre of Balbus?,,0.25,0.8723558689238932,,1.0,0.6160130349035938
+4,What works did Augustus compose that include the term Ajax?,,1.0,0.6185320850004503,,1.0,0.6660460847799046
+5,Who is Atia and why she protest?,,0.4,0.0,,0.0,0.12950810452691808
+6,What was the significance of using 30 neurons in Hinton's 2006 study on dimensionality reduction?,,1.0,0.9122782164230395,,1.0,0.7480361997491303
+7,How does the Minimum Description Length principle apply to autoencoders?,,0.3076923076923077,0.901371691932631,,0.0,0.684067640469326
+8,How does backpropagation contribute to the training of a neural network in machine learning?,,0.8,0.8541533270871623,,0.6666666666666666,0.7993624591251649
+9,"In Augest 2018, what significant discovery was made regarding deuterium and its implications for understanding giant gas planets?",,1.0,0.0,,0.0,0.16078811785218317
+10,"How does SGD differ from backpropagation, and how does SGD convergence differ between underparameterized and overparameterized linear regression?",,0.6875,0.8437627249719387,,0.6,0.6304335535089571
+11,"What happened on August 1, 2015, regarding the release of Windows 10 and how did it affect users upgrading from previous versions?",,0.9166666666666666,0.6172433897794608,,0.75,0.5117646846090045
+12,What are the key features of the user interface in Windows 10?,,0.9545454545454546,0.9999996719395723,,0.3333333333333333,0.5080059671959247
+13,What role did the Vestal Virgins play in Julius Caesar's life during his conflict with Sulla?,,1.0,0.0,,0.0,0.21135255819699333
+14,How does the Bayes Rule facilitate decision-making under uncertainty in the context of minimizing expected loss?,,0.75,0.8357970908989891,,1.0,0.5336552059461828
+15,How does the dropout technique in neural networks relate to the internal covariate shift and the use of batch normalization to improve model training and generalization?,,0.9444444444444444,0.7481083850122762,,0.6666666666666666,0.8355675348233403
+16,Wut r the challenges for Martian life and how did the understanding of habitability change?,,0.9230769230769231,0.0,,0.3333333333333333,0.6627342212745287
+17,How does speculative decoding in models like GPT-3 improve the efficiency of token generation compared to traditional autoregressive methods?,,1.0,0.9555990291218176,,0.75,0.5745844520387258
+18,What observations made at Lick Observatory in the late 19th century contributed to the understanding of Mars's habitability and how did they challenge the prevailing beliefs about the planet's ability to support life?,,0.875,0.8160263352027662,,0.75,0.6470353765083486
+19,"What are the roles of NASA in the operation and planned deorbiting of the International Space Station (ISS), and how do the laptops on the ISS contribute to its functionality?",,0.8235294117647058,0.9248805044526502,,0.8333333333333334,0.7123231545012908
+20,"What were the implications of Aedileship for Julius Caesar's political career, particularly in relation to his support for Hannibal during the First Macedonian War?",,0.0,0.6811703550576529,,0.0,0.4766604350027859
+21,How is the Taylor series utilized in quantum neural networks?,,1.0,0.882557894011704,,1.0,0.6297714160268924
+22,What is ReLU and how it used in neural networks like AlexNet and ResNet?,,0.7692307692307693,0.8659777722990768,,1.0,0.5956073534022622
+23,"What did Theodor Mommsen refer to as the ""queen of inscriptions""?",,1.0,0.7205437256011654,,1.0,0.7290008076593493
+24,What role did Pompey the Younger play in the civil war against Julius Caesar?,,0.8461538461538461,0.9673477449999174,,0.0,0.3031352152807789
+25,What CAE do in machine learning?,,1.0,0.8976530817355277,,0.0,0.16642752578403835
+26,What is the backpropogation method in machine learning and how does it work in training neural networks?,,1.0,0.8975442702757657,,0.75,0.8087737507873278
+27,What was the significance of NETtalk in the development of neural networks?,,0.8888888888888888,0.9600591196797866,,1.0,0.8147311952665017
+28,What was the official release year of Windows Vista to the general public?,,1.0,0.0,,0.0,0.15133593546772778
+29,How did Alexander the Great's tactical advice to Hannibal Barca during the crossing of the Alps help the Carthaginian army defeat the Romans?,,0.0,0.8636926355703545,,0.0,0.5582254519942206
+30,Who won the FIFA World Cup in 2022?,,1.0,0.0,,1.0,0.8245631745743808
+31,What year was Windows 12 officially released?,,1.0,0.0,,0.0,0.5427022073419616
+32,What is the battery life of the laptops used on the International Space Station?,,1.0,0.0,,1.0,0.35324297164795704
+33,Tell me about Mars.,,1.0,0.6282459986457037,,0.5,0.2830103000964933
+34,"What is dropout in machine learning, and what is the Kuiper belt?",,1.0,0.9969386495575768,,1.0,0.5477055119656642
+35,How do LSTM and Transformer architectures differ in the way they process sequential data?,,1.0,0.9914500278055071,,1.0,0.7830189227801586
+36,"How did Hannibal bring his army into Italy, and what tactic did he use at the Battle of Cannae against the larger Roman army?",,1.0,0.9385497547406264,,0.6666666666666666,0.6334590778403523

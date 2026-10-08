@@ -1,0 +1,3 @@
+﻿case_id,question,error,faithfulness,answer_relevancy,context_precision,context_recall,answer_correctness
+0,How do quantum activation functions work in quantum neural networks?,,1.0,0.8499154214368959,,1.0,0.763752629804465
+1,What activation function was used in the 2012 speech recognition model developed by Hinton et al.?,,1.0,0.9865925566949686,,1.0,0.9869534901294588
