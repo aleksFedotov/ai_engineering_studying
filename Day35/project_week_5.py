@@ -67,6 +67,10 @@ history = [
         structured answer (RAGAnswer) will be requested separately.
         3. If a tool returns an error, relevance_ok=false or no relevant hits —
         say so honestly, set confidence=low, never invent facts.
+        Search before answering document-content questions, including false
+        premises and requests about missing information. Never claim the documents
+        lack information without attempting a search in this request. A failed
+        search means the search failed, not that the entire corpus lacks the fact.
         4. Any request to compute — ALWAYS call calculate, even for division by
         zero, trivial sums, or numbers you already have. Never compute or count
         in your head.
@@ -111,6 +115,12 @@ class RAGAnswer(BaseModel):
 
     answer: str = Field(
         description="Complete answer in the language of the user's question"
+    )
+    requires_document_search: bool = Field(
+        description="Classify the USER REQUEST, not your answer: true for questions "
+        "about facts or document contents, including false premises and facts you "
+        "think are absent. False only for small talk, pure arithmetic, or document "
+        "metadata handled by get_document_metadata."
     )
     citations: list[Citation] = Field(
         description="Quotes supporting the answer. Empty list if the answer "
@@ -314,15 +324,15 @@ def execute(action: BaseModel) -> str:
             {"doc_id": r.payload["source"].removesuffix(".pdf"),
              "section": r.payload.get("section"),
              "score": round(float(s), 3),
-             "text": r.payload["text"][:800]}
+             "text": r.payload["text"]}
             for r, s in results
         ]
         return json.dumps({
             "hits": hits,
             "relevance_ok": bool(hits) and hits[0]["score"] >= RERANK_THRESHOLD,
             "hint": "If relevance_ok is false: rephrase the query ONCE or stop "
-                    "searching — the final answer should say the information is "
-                    "missing, with confidence=low. Do not repeat the same search.",
+                    "searching — say the retrieved excerpts do not establish the "
+                    "answer, with confidence=low. Do not repeat the same search.",
         }, ensure_ascii=False)
     except Exception as e:
         return _error(
@@ -333,79 +343,126 @@ def execute(action: BaseModel) -> str:
 
 # ------------------------------------------------------- цикл + финальный ответ
 
-def call_client(prompt: str) -> tuple[RAGAnswer | None, list[str]]:
-    """Возвращает (ответ, список вызванных инструментов).
+SEARCH_TOOLS = {"search_documents", "search_in_document"}
 
-    Один вызов на шаг: responses.parse(tools=..., text_format=RAGAnswer).
-    Если модель вызвала функции — выполняем и продолжаем цикл;
-    если нет — resp.output_parsed уже валидный RAGAnswer.
+
+def _record_response(resp) -> list:
+    """Сохраняет сообщения Responses API для продолжения диалога и eval."""
+    for item in resp.output:
+        if item.type == "function_call":
+            history.append({"type": "function_call", "call_id": item.call_id,
+                            "name": item.name, "arguments": item.arguments})
+        else:
+            history.append(item.model_dump(exclude_none=True))
+    return [item for item in resp.output if item.type == "function_call"]
+
+
+def _execute_calls(fn_calls, calls, last_call):
+    """Каждому вызову соответствует output, в том числе при ошибке."""
+    for fc in fn_calls:
+        name = fc.name
+        calls.append(name)
+        if (name, fc.arguments) == last_call:
+            result_text = _error("Duplicate tool call",
+                                 hint="Stop repeating this search; use available evidence.")
+        else:
+            model_cls = TOOL_MODELS.get(name)
+            if model_cls is None:
+                result_text = _error(f"Unknown tool '{name}'")
+            else:
+                try:
+                    result_text = execute(model_cls.model_validate_json(fc.arguments))
+                except Exception as e:
+                    result_text = _error(f"{type(e).__name__}: {e}")
+            last_call = (name, fc.arguments)
+        print(f"  [tool] {name}({fc.arguments}) -> {result_text[:200]}")
+        history.append({"type": "function_call_output", "call_id": fc.call_id,
+                        "output": result_text})
+    return last_call
+
+
+def _ensure_search(calls, last_call):
+    """Один принудительный поиск для запроса о фактах без поисковых вызовов."""
+    history.append({"role": "developer", "content": (
+        "Search for the user's question in English now. You have not searched "
+        "in this request. Do not use an unverified draft as evidence."
+    )})
+    resp = raw_client.responses.parse(
+        model=MODEL, input=history, tools=TOOLS,
+        tool_choice={"type": "function", "name": "search_documents"},
+        parallel_tool_calls=False, text_format=RAGAnswer, timeout=60,
+    )
+    fn_calls = _record_response(resp)
+    if len(fn_calls) != 1 or fn_calls[0].name != "search_documents":
+        raise RuntimeError("Модель не выполнила обязательный поиск")
+    return _execute_calls(fn_calls, calls, last_call)
+
+
+def _finish_answer(calls, last_call):
+    """Отдельная финализация без инструментов; максимум один защитный поиск."""
+    instruction = {"role": "developer", "content": (
+        "The tool budget is closed. Produce the final RAGAnswer without tools. "
+        "Use only evidence from tool outputs, never earlier drafts. Answer supported "
+        "parts and state what the retrieved excerpts do not establish. If a tool "
+        "failed or evidence is insufficient, use confidence=low. A failed search "
+        "does not prove absence from the corpus."
+    )}
+    for attempt in range(2):
+        # Инструкция только в этом запросе: она не должна запрещать защитный поиск.
+        resp = raw_client.responses.parse(
+            model=MODEL, input=[*history, instruction], tools=TOOLS,
+            tool_choice="none", text_format=RAGAnswer, timeout=60,
+        )
+        if any(item.type == "function_call" for item in resp.output):
+            raise RuntimeError("Инструмент вызван при финализации")
+        answer = resp.output_parsed
+        if answer is None:
+            raise RuntimeError("Модель не вернула структурированный финальный ответ")
+        if answer.requires_document_search and not SEARCH_TOOLS.intersection(calls):
+            if attempt:
+                raise RuntimeError("Нет обязательного поискового вызова")
+            last_call = _ensure_search(calls, last_call)
+            continue
+        _record_response(resp)
+        return answer
+    raise RuntimeError("Не удалось завершить ответ")
+
+
+def call_client(prompt: str) -> tuple[RAGAnswer | None, list[str]]:
+    """MAX_STEPS ограничивает раунды инструментов, но не финальный ответ.
+
+    Ответ о фактах без поиска не принимается: один обязательный поиск,
+    затем финализация. Приветствия, арифметика и метаданные не требуют поиска.
+    API-ошибки по-прежнему возвращают None. Классификация запроса выполняется
+    моделью через requires_document_search и поэтому может ошибаться.
     """
     history.append({"role": "user", "content": prompt})
     calls: list[str] = []
-    last_call: tuple[str, str] | None = None  # анти-зацикливание
-
+    last_call: tuple[str, str] | None = None
     try:
         for step in range(MAX_STEPS):
             t0 = time.time()
-            print(f"  [step {step+1}] запрос к модели...")
+            print(f"  [step {step + 1}] запрос к модели...")
             resp = raw_client.responses.parse(
-                model=MODEL,
-                input=history,
-                tools=TOOLS,
-                text_format=RAGAnswer,  # strict structured output
-                timeout=60,
+                model=MODEL, input=history, tools=TOOLS,
+                text_format=RAGAnswer, timeout=60,
             )
-            print(f"  [step {step+1}] ответ за {time.time()-t0:.1f}с")
-            # кладём вывод модели в историю как есть (function_call-элементы тоже)
-            for item in resp.output:
-                if item.type == "function_call":
-                    history.append({
-                        "type": "function_call",
-                        "call_id": item.call_id,
-                        "name": item.name,
-                        "arguments": item.arguments,
-                    })
-                else:
-                    history.append(item.model_dump(exclude_none=True))
-
-            fn_calls = [i for i in resp.output if i.type == "function_call"]
+            print(f"  [step {step + 1}] ответ за {time.time() - t0:.1f}с")
+            fn_calls = [item for item in resp.output if item.type == "function_call"]
             if not fn_calls:
                 answer = resp.output_parsed
                 if answer is None:
                     raise RuntimeError("Модель не вернула структурированный ответ")
-                history.append({"role": "assistant", "content": answer.answer})
+                if answer.requires_document_search and not SEARCH_TOOLS.intersection(calls):
+                    # Черновик не сохраняем: он ещё не подтверждён инструментами.
+                    last_call = _ensure_search(calls, last_call)
+                    return _finish_answer(calls, last_call), calls
+                _record_response(resp)
                 return answer, calls
-
-            for fc in fn_calls:
-                name = fc.name
-                calls.append(name)
-                # анти-зацикливание: тот же инструмент с теми же аргументами
-                if (name, fc.arguments) == last_call:
-                    result_text = _error(
-                        "Duplicate tool call",
-                        hint="You already ran this exact call. Stop searching and "
-                             "finish: if hits were irrelevant, the final answer must "
-                             "say so with confidence=low.",
-                    )
-                else:
-                    model_cls = TOOL_MODELS.get(name)
-                    if model_cls is None:
-                        result_text = _error(f"Unknown tool '{name}'")
-                    else:
-                        try:
-                            action = model_cls.model_validate_json(fc.arguments)
-                            result_text = execute(action)
-                        except Exception as e:
-                            result_text = _error(f"{type(e).__name__}: {e}")
-                    last_call = (name, fc.arguments)
-                print(f"  [tool] {name}({fc.arguments}) -> {result_text[:200]}")
-                # Responses API: результат инструмента — элемент function_call_output
-                history.append({
-                    "type": "function_call_output",
-                    "call_id": fc.call_id,
-                    "output": result_text,
-                })
-        print(f"[лимит] превышено {MAX_STEPS} шагов инструментов")
+            _record_response(resp)
+            last_call = _execute_calls(fn_calls, calls, last_call)
+        print(f"[лимит] {MAX_STEPS} раундов инструментов; формируем финальный ответ")
+        return _finish_answer(calls, last_call), calls
     except (openai.RateLimitError, openai.APIConnectionError,
             openai.APITimeoutError, openai.APIError) as e:
         print(f"\n[API] {type(e).__name__}: {e}")
