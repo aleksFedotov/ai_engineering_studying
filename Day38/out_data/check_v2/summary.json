@@ -1,0 +1,33 @@
+{
+  "total": 3,
+  "answered": 3,
+  "metrics": {
+    "faithfulness": {
+      "mean": 1.0,
+      "scored": 3,
+      "missing": 0
+    },
+    "answer_relevancy": {
+      "mean": 0.9447427921716737,
+      "scored": 3,
+      "missing": 0
+    },
+    "context_precision": {
+      "mean": 0.9444444443805556,
+      "scored": 3,
+      "missing": 0
+    },
+    "context_recall": {
+      "mean": 1.0,
+      "scored": 3,
+      "missing": 0
+    },
+    "answer_correctness": {
+      "mean": 0.8242155975517157,
+      "scored": 3,
+      "missing": 0
+    }
+  },
+  "judge_model": "gpt-4.1-mini",
+  "embedding_model": "text-embedding-3-small"
+}
