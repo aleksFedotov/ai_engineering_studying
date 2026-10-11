@@ -76,7 +76,7 @@ def collect(args, out):
     write_json(out / "config.json", {
         "dataset": str(Path(args.dataset).resolve()), "collection": args.collection,
         "chunks": str(chunks), "model": args.model, "limit": args.limit,
-        "context_chars_per_hit": 800,
+        "context_chars_per_hit": None,  # День 35 передаёт полный текст чанка.
     })
     with (out / "runs.jsonl").open("w", encoding="utf-8") as log:
         for i, case in enumerate(cases):
@@ -91,6 +91,8 @@ def collect(args, out):
                 "response": answer.answer if answer is not None else None,
                 "retrieved_contexts": contexts, "tool_calls": calls,
                 "tool_errors": errors, "error": "no_answer" if answer is None else None,
+                "error_details": agent.last_error,
+                "answer_validation_errors": list(agent.answer_validation_errors),
                 "elapsed_seconds": round(time.monotonic() - start, 2),
                 "structured_answer": answer.model_dump(mode="json") if answer else None,
             }
@@ -150,6 +152,8 @@ def evaluate_runs(args, out):
                           raise_exceptions=False)
         for row, scores in zip(selected, result.scores):
             for name, value in scores.items():
+                if name == "llm_context_precision_with_reference":
+                    name = "context_precision"
                 row[name] = finite(value)
     with (out / "scores.jsonl").open("w", encoding="utf-8") as log:
         for row in rows:

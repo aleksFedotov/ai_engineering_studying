@@ -76,8 +76,18 @@ history = [
         in your head.
         Example: "How many chunks do X and Y have in total?" ->
         get_document_metadata(X), get_document_metadata(Y), calculate("62 + 56").
-        Available documents (doc_id — file):
-{DOC_LIST}
+        5.Before producing the final answer, identify every distinct part
+        of the user's question and check the retrieved evidence for each.
+        Answer supported parts with citations. Explicitly identify parts
+        that the search did not establish. Never silently omit a part.
+        6. For factual document answers, use only retrieved excerpts from
+        the current request. Never fill missing information with general
+        knowledge or memory, even if you are certain.
+        Every factual claim must have a supporting citation.
+        If evidence is insufficient, state that the search did not establish
+        the answer and set confidence=low.
+        
+        Available documents (doc_id — file): {DOC_LIST}
         """,
     }
 ]
@@ -114,7 +124,15 @@ class RAGAnswer(BaseModel):
     """Final answer to the user based on the conversation so far."""
 
     answer: str = Field(
-        description="Complete answer in the language of the user's question"
+        description=(
+        "Answer in the language of the user's question. "
+        "Cover every distinct part of the question. "
+        "For each part, either provide an answer supported by retrieved "
+        "excerpts with citations, or explicitly state that the search "
+        "did not provide enough information. "
+        "Never silently omit a part or fill missing information "
+        "with general knowledge."
+        )
     )
     requires_document_search: bool = Field(
         description="Classify the USER REQUEST, not your answer: true for questions "
@@ -429,18 +447,19 @@ def _finish_answer(calls, last_call):
 
 
 def call_client(prompt: str) -> tuple[RAGAnswer | None, list[str]]:
-    """MAX_STEPS ограничивает раунды инструментов, но не финальный ответ.
+    """Сначала выполняет обязательный поиск по текущему вопросу.
 
-    Ответ о фактах без поиска не принимается: один обязательный поиск,
-    затем финализация. Приветствия, арифметика и метаданные не требуют поиска.
-    API-ошибки по-прежнему возвращают None. Классификация запроса выполняется
-    моделью через requires_document_search и поэтому может ошибаться.
+    MAX_STEPS ограничивает раунды инструментов, включая первый поиск.
+    После исчерпания бюджета выполняется отдельный финальный ответ.
+    При API-ошибке или системной ошибке возвращает None.
     """
     history.append({"role": "user", "content": prompt})
     calls: list[str] = []
     last_call: tuple[str, str] | None = None
     try:
-        for step in range(MAX_STEPS):
+        last_call = _ensure_search(calls, last_call)
+    
+        for step in range(MAX_STEPS -1):
             t0 = time.time()
             print(f"  [step {step + 1}] запрос к модели...")
             resp = raw_client.responses.parse(
@@ -453,10 +472,6 @@ def call_client(prompt: str) -> tuple[RAGAnswer | None, list[str]]:
                 answer = resp.output_parsed
                 if answer is None:
                     raise RuntimeError("Модель не вернула структурированный ответ")
-                if answer.requires_document_search and not SEARCH_TOOLS.intersection(calls):
-                    # Черновик не сохраняем: он ещё не подтверждён инструментами.
-                    last_call = _ensure_search(calls, last_call)
-                    return _finish_answer(calls, last_call), calls
                 _record_response(resp)
                 return answer, calls
             _record_response(resp)
