@@ -1,0 +1,7 @@
+﻿case_id,question,error,faithfulness,answer_relevancy,context_precision,context_recall,answer_correctness
+0,Who is Atia and why she protest?,,1.0,0.0,0.0,0.0,0.5218107102095153
+1,What role did Pompey the Younger play in the civil war against Julius Caesar?,,1.0,0.0,0.49999999995,1.0,0.6135696776273009
+2,How did Alexander the Great's tactical advice to Hannibal Barca during the crossing of the Alps help the Carthaginian army defeat the Romans?,,1.0,0.0,0.6791666666496875,1.0,0.5228762239680782
+3,Who won the FIFA World Cup in 2022?,,1.0,0.0,0.0,1.0,0.8225177948120019
+4,Tell me about Mars.,,1.0,0.599349251933082,0.99999999995,0.25,0.1462379928233053
+5,"What is dropout in machine learning, and what is the Kuiper belt?",,1.0,0.9969314839776647,0.249999999975,1.0,0.5997879934446779

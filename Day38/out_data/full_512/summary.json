@@ -13,9 +13,9 @@
       "missing": 1
     },
     "context_precision": {
-      "mean": null,
-      "scored": 0,
-      "missing": 37
+      "mean": 0.5516203703245023,
+      "scored": 36,
+      "missing": 1
     },
     "context_recall": {
       "mean": 0.6000000000000001,

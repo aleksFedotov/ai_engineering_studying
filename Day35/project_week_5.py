@@ -9,6 +9,7 @@ import json
 import time
 import ast
 import operator
+import re
 from pathlib import Path
 
 load_dotenv(find_dotenv())
@@ -472,6 +473,8 @@ def _assemble_answer(answer):
 
     Проверка цитат подтверждает их наличие, а не смысловую корректность ответа.
     """
+    # Нормализация служебных имён не должна менять исходный черновик для диагностики.
+    answer = answer.model_copy(deep=True)
     current = max(i for i, item in enumerate(history) if item.get("role") == "user")
     items = history[current + 1:]
     plans = [RequestPlan.model_validate_json(item["content"].removeprefix("REQUEST_PLAN:\n"))
@@ -495,19 +498,35 @@ def _assemble_answer(answer):
         if part.supported and not direct:
             raise ValueError("Supported answer part requires direct facts with source_id")
         normalize = lambda text: " ".join(text.casefold().split())
-        for fact in part.facts:
+        contains_name = lambda name, text: re.search(
+            r"(?<!\w)" + re.escape(normalize(name)) + r"(?!\w)", normalize(text)) is not None
+        for fact_index, fact in enumerate(part.facts):
             hit = hits.get(fact.source_id)
             if hit is None:
                 raise ValueError(f"unknown source_id {fact.source_id!r}")
             if not fact.fact.strip() or not fact.entity.strip():
                 raise ValueError("Fact and entity must not be empty")
-            if normalize(fact.entity) not in normalize(hit.get("text", "")):
-                raise ValueError("Selected source must identify the exact entity")
+            source_text = hit.get("text", "")
+            if not contains_name(fact.entity, source_text):
+                # Разрешаем только отделённое запятой пояснение после ТОЧНОГО
+                # имени из плана. Не сокращаем имя по словам или квалификаторам.
+                name, separator, _ = fact.entity.partition(',')
+                requested_names = plans[0].target_entities if plans else []
+                if (separator and normalize(name) in {normalize(t) for t in requested_names}
+                        and contains_name(name, source_text)):
+                    fact.entity = name.strip()
+                else:
+                    raise ValueError(
+                        f"Part {index + 1}, fact {fact_index + 1}: Selected source must identify "
+                        f"the exact entity {fact.entity!r}; source_id={fact.source_id!r}. "
+                        "Use the subject name from the source without descriptive apposition. "
+                        "Preserve all requested name qualifiers; remove or replace the claim "
+                        "if this source concerns a namesake.")
             if plans:
                 for target in plans[0].target_entities:
                     entity, requested = normalize(fact.entity), normalize(target)
                     if entity != requested and f" {entity} " in f" {requested} ":
-                        if requested not in normalize(hit.get("text", "")):
+                        if not contains_name(requested, source_text):
                             raise ValueError("Evidence entity omits a requested name qualifier")
         citations = []
         for source_id in dict.fromkeys(fact.source_id for fact in part.facts):
@@ -563,6 +582,12 @@ def _validate_or_repair(resp):
             "Direct facts establish the request; background may accompany supported=false. "
             "Search failure explanations are not document facts and need no fact records. "
             "Use the CURRENT question language for answers and follow-ups. "
+            "Correct the specific part and fact named in the validation error. Preserve "
+            "other supported parts. When a source concerns a namesake, do not merely rename "
+            "its subject: remove that claim, look through the current hits for evidence "
+            "about the exact requested person, and rewrite the answer to match retained facts. "
+            "If only a limited relation is established, give that relation and identify "
+            "the remaining requested gap; do not import a namesake's biography. "
             "If evidence supports a limited direct answer, give it rather than a blanket "
             "refusal. Validation error and proposed draft:\n" + json.dumps(
                 {"error": str(error), "draft": answer.model_dump(mode="json")},
@@ -751,7 +776,12 @@ def _plan_request():
             "Identify answer_language ONLY from the CURRENT user question. List only actual requested parts and exact entities including qualifiers. "
             "Detect underspecified standalone names or acronyms; retrieval popularity must not "
             "resolve ambiguity. If ambiguous, state the provisional interpretation and ask "
-            "which meaning is intended. Catalog names may suggest meanings but establish no facts. "
+            "which meaning is intended. "
+            "For a bare topic overview, consider distinct common meanings before selecting "
+            "one: a celestial body, deity, person, organization or acronym expansion. "
+            "If multiple meanings are plausible and the question supplies no distinguishing "
+            "context, set ambiguous=true even if only one has a matching catalog title. "
+            "Catalog names may suggest meanings but establish no facts. "
             "Do not require full biographies or detailed histories for a simple question."
         )}], tools=TOOLS, tool_choice="none", text_format=RequestPlan, timeout=60)
     if response.output_parsed is None or any(item.type == "function_call" for item in response.output):
