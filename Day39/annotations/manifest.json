@@ -1,0 +1,12 @@
+{
+  "total": 49,
+  "question_groups": 37,
+  "sources": [
+    "Day38/out_data/full_512_v2/runs.jsonl",
+    "Day38/out_data/problem_cases_v10/runs.jsonl",
+    "Day38/out_data/problem_cases_v11/runs.jsonl"
+  ],
+  "labels_filled": false,
+  "split_policy": "Group by question; stratify after human labeling",
+  "reference_updates": 1
+}
