@@ -1,0 +1,13 @@
+День 40 — Регрессионное тестирование: promptfoo и CI (~2.5 ч)
+Источники:
+promptfoo — Getting started: https://www.promptfoo.dev/docs/getting-started/
+Promptfoo Tutorial (DataCamp): https://www.datacamp.com/tutorial/promptfoo-tutorial
+Testing LLM Prompts Like Code: Regression Evals in CI/CD (Medium): https://medium.com/@alexrodriguesj/testing-llm-prompts-like-code-regression-evals-in-ci-cd-with-promptfoo-5242b4dcb9be
+Что сделать:
+Поставить promptfoo, написать promptfooconfig.yaml: prompts / providers / tests с assertions — перенести часть eval-набора из дня 37
+Прогнать npx promptfoo eval локально: сравнить 2 варианта системного промпта или 2 модели на одном наборе — увидеть таблицу результатов
+Понять логику CI-gate: промпт = продакшн-поведение, он живёт под той же дисциплиной, что и код; assertions должны «падать громко»
+Настроить GitHub Action (promptfoo/promptfoo-action@v1): eval на каждый PR, результаты в JUnit XML, порог pass-rate ~95% блокирует мёрж (не 100% — model-graded assertions недетерминированы)
+Смоделировать регрессию руками: умышленно ухудшить промпт → увидеть, как eval падает до мёржа, а не после жалобы пользователя
+Выписать гигиену: версии промптов и датасетов, ревью новых примеров, вывод устаревших кейсов из сьюта
+Контрольная точка: изменение промпта автоматически прогоняет evals в CI; одна намеренная регрессия поймана пайплайном — вы видели, как «молчаливая деградация» превращается в красный билд.
